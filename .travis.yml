@@ -1,5 +1,6 @@
 language: objective-c
-osx_image: xcode11.6
-xcode_project: WeatherVIP.xcodeproj
-xcode_scheme: WeatherVIP
+osx_image: xcode9
+
+script:
+- xcodebuild test -project WeatherVIP.xcodeproj -scheme WeatherVIP -destination "platform=iOS Simulator,name=iPhone 7" -sdk iphonesimulator11.0 CODE_SIGNING_REQUIRED=NO
 
