@@ -4,5 +4,5 @@ xcode_project: WeatherVIP.xcodeproj
 xcode_scheme: WeatherVIP
 
 script:
-- xcodebuild CODE_SIGNING_REQUIRED=NO
+- xcodebuild CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates
 #xcode_destination: platform=iOS Simulator,OS=13.6,name=iPhone X
