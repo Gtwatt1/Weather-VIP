@@ -1,5 +1,5 @@
 language: objective-c
 xcode_project: WeatherVIP.xcodeproj
 xcode_scheme: WeatherVIPTests
-xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
+xcode_destination: platform=iOS Simulator,OS=13.5,name=iPhone X
 
