@@ -13,7 +13,18 @@
 		5AA03B06251B54E9009BF523 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AA03B04251B54E9009BF523 /* Main.storyboard */; };
 		5AA03B08251B54F0009BF523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AA03B07251B54F0009BF523 /* Assets.xcassets */; };
 		5AA03B0B251B54F0009BF523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AA03B09251B54F0009BF523 /* LaunchScreen.storyboard */; };
+		5AA03B19251B6CBE009BF523 /* WeatherVIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03B18251B6CBE009BF523 /* WeatherVIPTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5AA03B1B251B6CBF009BF523 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5AA03AF3251B54E8009BF523 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5AA03AFA251B54E8009BF523;
+			remoteInfo = WeatherVIP;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5AA03AFB251B54E9009BF523 /* WeatherVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +35,20 @@
 		5AA03B07251B54F0009BF523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5AA03B0A251B54F0009BF523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5AA03B0C251B54F0009BF523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AA03B16251B6CBE009BF523 /* WeatherVIPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherVIPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AA03B18251B6CBE009BF523 /* WeatherVIPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVIPTests.swift; sourceTree = "<group>"; };
+		5AA03B1A251B6CBE009BF523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5AA03AF8251B54E8009BF523 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AA03B13251B6CBE009BF523 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				5AA03AFD251B54E9009BF523 /* WeatherVIP */,
+				5AA03B17251B6CBE009BF523 /* WeatherVIPTests */,
 				5AA03AFC251B54E9009BF523 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				5AA03AFB251B54E9009BF523 /* WeatherVIP.app */,
+				5AA03B16251B6CBE009BF523 /* WeatherVIPTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,6 +88,15 @@
 				5AA03B0C251B54F0009BF523 /* Info.plist */,
 			);
 			path = WeatherVIP;
+			sourceTree = "<group>";
+		};
+		5AA03B17251B6CBE009BF523 /* WeatherVIPTests */ = {
+			isa = PBXGroup;
+			children = (
+				5AA03B18251B6CBE009BF523 /* WeatherVIPTests.swift */,
+				5AA03B1A251B6CBE009BF523 /* Info.plist */,
+			);
+			path = WeatherVIPTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +119,24 @@
 			productReference = 5AA03AFB251B54E9009BF523 /* WeatherVIP.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5AA03B15251B6CBE009BF523 /* WeatherVIPTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AA03B1D251B6CBF009BF523 /* Build configuration list for PBXNativeTarget "WeatherVIPTests" */;
+			buildPhases = (
+				5AA03B12251B6CBE009BF523 /* Sources */,
+				5AA03B13251B6CBE009BF523 /* Frameworks */,
+				5AA03B14251B6CBE009BF523 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5AA03B1C251B6CBF009BF523 /* PBXTargetDependency */,
+			);
+			name = WeatherVIPTests;
+			productName = WeatherVIPTests;
+			productReference = 5AA03B16251B6CBE009BF523 /* WeatherVIPTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,6 +149,10 @@
 				TargetAttributes = {
 					5AA03AFA251B54E8009BF523 = {
 						CreatedOnToolsVersion = 11.4;
+					};
+					5AA03B15251B6CBE009BF523 = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 5AA03AFA251B54E8009BF523;
 					};
 				};
 			};
@@ -116,6 +170,7 @@
 			projectRoot = "";
 			targets = (
 				5AA03AFA251B54E8009BF523 /* WeatherVIP */,
+				5AA03B15251B6CBE009BF523 /* WeatherVIPTests */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +183,13 @@
 				5AA03B0B251B54F0009BF523 /* LaunchScreen.storyboard in Resources */,
 				5AA03B08251B54F0009BF523 /* Assets.xcassets in Resources */,
 				5AA03B06251B54E9009BF523 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5AA03B14251B6CBE009BF523 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +206,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5AA03B12251B6CBE009BF523 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AA03B19251B6CBE009BF523 /* WeatherVIPTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5AA03B1C251B6CBF009BF523 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5AA03AFA251B54E8009BF523 /* WeatherVIP */;
+			targetProxy = 5AA03B1B251B6CBF009BF523 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5AA03B04251B54E9009BF523 /* Main.storyboard */ = {
@@ -314,6 +392,44 @@
 			};
 			name = Release;
 		};
+		5AA03B1E251B6CBF009BF523 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WeatherVIPTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.WeatherVIPTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherVIP.app/WeatherVIP";
+			};
+			name = Debug;
+		};
+		5AA03B1F251B6CBF009BF523 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WeatherVIPTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.WeatherVIPTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherVIP.app/WeatherVIP";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -331,6 +447,15 @@
 			buildConfigurations = (
 				5AA03B10251B54F0009BF523 /* Debug */,
 				5AA03B11251B54F0009BF523 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5AA03B1D251B6CBF009BF523 /* Build configuration list for PBXNativeTarget "WeatherVIPTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AA03B1E251B6CBF009BF523 /* Debug */,
+				5AA03B1F251B6CBF009BF523 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
