@@ -2,7 +2,7 @@ language: objective-c
 osx_image: xcode11.6
 xcode_project: WeatherVIP.xcodeproj
 xcode_scheme: WeatherVIP
-xcode_sdk: iphonesimulator14.0
+xcode_sdk: iphonesimulator13.6
 
 script:
 - xcodebuild CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates
