@@ -33,10 +33,10 @@ class WeatherInteractor: WeatherForecastLogic {
 
 extension WeatherInteractor: LocationServiceDelegate {
     func didGetLocation(_ lat: String, lng: String) {
-        weatherService.getCurrentDayWeather(lat: lat, lng: lng) {[weak self] (result: Result<Forecast , APIError> ) in
+        weatherService.getCurrentDayWeather(lat: lat, lng: lng) {[weak self] (result: Result<Forecast, APIError> ) in
            
         }
-        weatherService.getFivedaysWeather(lat: lat, lng: lat) { [weak self] (result: Result<ForecastList , APIError> )  in
+        weatherService.getFivedaysWeather(lat: lat, lng: lat) { [weak self] (result: Result<ForecastList, APIError> )  in
            
         }
     }
