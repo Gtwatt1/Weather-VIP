@@ -16,7 +16,7 @@ class WeatherInteractor: WeatherForecastLogic {
     let locationService: LocationService
     let weatherService: WeatherServiceProtocol
 
-    init(locationService: LocationService,weatherService: WeatherServiceProtocol) {
+    init(locationService: LocationService, weatherService: WeatherServiceProtocol) {
         self.locationService = locationService
         self.weatherService = weatherService
     }

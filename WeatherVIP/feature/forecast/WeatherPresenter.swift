@@ -10,48 +10,43 @@ import Foundation
 import CoreLocation
 
 protocol WeatherCellView {
-    func displayDay(day : String)
-    func displayWeatherType(image : String)
-    func displayTemperature(temp : String)
+    func displayDay(day: String)
+    func displayWeatherType(image: String)
+    func displayTemperature(temp: String)
 }
 
-protocol WeatherView : class {
-    func didUpdateCurrentForecast(currentDayForecast : Forecast)
+protocol WeatherView: class {
+    func didUpdateCurrentForecast(currentDayForecast: Forecast)
     func didUpdateFiveDaysForecast()
     func didUpdateWithError()
     func didChangeTheme()
 }
 
-
 class WeatherPresenter {
     var backgroundColor = "", weatherImage = "", error = ""
-    weak fileprivate var view : WeatherView?
-    var fiveDaysForecast : [Forecast]?
+    weak fileprivate var view: WeatherView?
+    var fiveDaysForecast: [Forecast]?
 
-    
-    
-    init(view : WeatherView) {
+    init(view: WeatherView) {
         self.view = view
     }
-    
-    var weatherType = WeatherType.cloudy{
-        didSet{
+
+    var weatherType = WeatherType.cloudy {
+        didSet {
             setBackgroundView()
         }
     }
-    
-    func changeTheme(){
-        if let theme = theme{
-            if  theme == .forest{
+
+    func changeTheme() {
+        if let theme = theme {
+            if  theme == .forest {
                 self.theme = .sea
-            }else{
+            } else {
                 self.theme = .forest
             }
         }
     }
-    
-    
-    func configureCell(cell : WeatherCellView, row: Int){
+    func configureCell(cell: WeatherCellView, row: Int) {
         let dayForecast = fiveDaysForecast?[row]
         let weatherImage = getWeatherType(dayForecast?.weather?[0].main?.lowercased())
         let cellDay = getDayOfTheWeek(intDate: dayForecast?.dt ?? 0)
@@ -59,7 +54,7 @@ class WeatherPresenter {
         cell.displayDay(day: cellDay)
         cell.displayTemperature(temp: "\(Int(dayForecast?.main?.temp?.rounded() ?? 0.0) )º")
     }
-    
+
     func setBackgroundView() {
         switch weatherType {
         case .cloudy:
@@ -73,17 +68,17 @@ class WeatherPresenter {
             backgroundColor = "47AB2F"
         }
     }
-    
-    var theme : Theme?{
-        didSet{
-            if let theme = theme{
+
+    var theme: Theme? {
+        didSet {
+            if let _ = theme {
                 setBackgroundView()
             }
             view?.didChangeTheme()
         }
     }
-    
-    fileprivate func getWeatherType(_ weatherMain: String?) -> WeatherType{
+
+    fileprivate func getWeatherType(_ weatherMain: String?) -> WeatherType {
         switch weatherMain {
         case "rain", "thunderstorm", "drizzle", "snow", "mist":
             return WeatherType.rainy
@@ -93,11 +88,9 @@ class WeatherPresenter {
             return WeatherType.sunny
         }
     }
-    
-    func getDayOfTheWeek(intDate: Int) -> String{
+
+    func getDayOfTheWeek(intDate: Int) -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(intDate))
-        return date.description // dayOfWeek()
+        return date.dayOfWeek()
     }
-    
-    
 }
