@@ -21,5 +21,30 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor?.fetchWeatherForecast()
+        view.backgroundColor = .red
+    }
+
+    var interactor: WeatherForecastLogic?
+
+    func setup(interactor: WeatherForecastLogic) {
+        self.interactor = interactor
+    }
+}
+
+extension WeatherViewController: WeatherView {
+    func didUpdateCurrentForecast(currentDayForecast: Forecast) {
+    }
+
+    func didUpdateFiveDaysForecast() {
+
+    }
+
+    func didUpdateWithError() {
+
+    }
+
+    func didChangeTheme() {
+        
     }
 }

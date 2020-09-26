@@ -22,6 +22,8 @@
 		5A53AAA2251DB52400705C24 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9D251DB52300705C24 /* UIView+Extension.swift */; };
 		5A53AAA3251DB52400705C24 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9E251DB52300705C24 /* UIViewController+Extension.swift */; };
 		5A53AAA4251DB52400705C24 /* UIStackview+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9F251DB52300705C24 /* UIStackview+Extension.swift */; };
+		5A53AAC5251EF53600705C24 /* WeatherBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AAC4251EF53600705C24 /* WeatherBuilder.swift */; };
+		5A53AAC7251EF56800705C24 /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AAC6251EF56800705C24 /* SceneBuilder.swift */; };
 		5AA03AFF251B54E9009BF523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03AFE251B54E9009BF523 /* AppDelegate.swift */; };
 		5AA03B01251B54E9009BF523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03B00251B54E9009BF523 /* SceneDelegate.swift */; };
 		5AA03B03251B54E9009BF523 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03B02251B54E9009BF523 /* ViewController.swift */; };
@@ -56,6 +58,8 @@
 		5A53AA9D251DB52300705C24 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5A53AA9E251DB52300705C24 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		5A53AA9F251DB52300705C24 /* UIStackview+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackview+Extension.swift"; sourceTree = "<group>"; };
+		5A53AAC4251EF53600705C24 /* WeatherBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBuilder.swift; sourceTree = "<group>"; };
+		5A53AAC6251EF56800705C24 /* SceneBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
 		5AA03AFB251B54E9009BF523 /* WeatherVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA03AFE251B54E9009BF523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AA03B00251B54E9009BF523 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				5A53AA9A251DB52300705C24 /* extensions */,
 				5A53AA96251DAC8300705C24 /* UrlConstants.swift */,
 				5A53AA91251DAB9E00705C24 /* Network */,
+				5A53AAC6251EF56800705C24 /* SceneBuilder.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 				5A53AA82251D9F7100705C24 /* Main.storyboard */,
 				5A53AA86251DA1E900705C24 /* WeatherInteractor.swift */,
 				5A53AA8D251DA95200705C24 /* WeatherModel.swift */,
+				5A53AAC4251EF53600705C24 /* WeatherBuilder.swift */,
 			);
 			path = forecast;
 			sourceTree = "<group>";
@@ -322,8 +328,10 @@
 				5A53AA95251DABB100705C24 /* ApiError.swift in Sources */,
 				5AA03AFF251B54E9009BF523 /* AppDelegate.swift in Sources */,
 				5A53AA8A251DA4C400705C24 /* LocationService.swift in Sources */,
+				5A53AAC7251EF56800705C24 /* SceneBuilder.swift in Sources */,
 				5A53AA94251DABB100705C24 /* Networker.swift in Sources */,
 				5A53AA97251DAC8400705C24 /* UrlConstants.swift in Sources */,
+				5A53AAC5251EF53600705C24 /* WeatherBuilder.swift in Sources */,
 				5AA03B01251B54E9009BF523 /* SceneDelegate.swift in Sources */,
 				5A53AAA0251DB52400705C24 /* UIColor+Extension.swift in Sources */,
 				5A53AAA1251DB52400705C24 /* Date+Extension.swift in Sources */,
@@ -483,6 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2N24M5H3S7;
 				INFOPLIST_FILE = WeatherVIP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -501,6 +510,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2N24M5H3S7;
 				INFOPLIST_FILE = WeatherVIP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

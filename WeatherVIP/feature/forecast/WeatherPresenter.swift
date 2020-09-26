@@ -22,12 +22,16 @@ protocol WeatherView: class {
     func didChangeTheme()
 }
 
-class WeatherPresenter {
+protocol WeatherPresentationLogic {
+    
+}
+
+class WeatherPresenter: WeatherPresentationLogic {
     var backgroundColor = "", weatherImage = "", error = ""
-    weak fileprivate var view: WeatherView?
+    weak private var view: WeatherView?
     var fiveDaysForecast: [Forecast]?
 
-    init(view: WeatherView) {
+    func setView(view: WeatherView) {
         self.view = view
     }
 
