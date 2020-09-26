@@ -22,7 +22,6 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.fetchWeatherForecast()
-        view.backgroundColor = .red
     }
 
     var interactor: WeatherForecastLogic?
