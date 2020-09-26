@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol WeatherDisplayLogic: class {
+    func displayCurrentDayWeather(viewModel: CurrentDayForecastVM)
+    func displayViewBackground(_ background: ViewBackground)
+    func displayComingDaysWeather(cellRepresentable: [ComingDaysForecastVM]) 
+}
+
 class WeatherViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -19,8 +25,10 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var moreCurrentDayTemperatureDetailsLabel: UIStackView!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
+    var tableManager = WeatherTableManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = tableManager
         interactor?.fetchWeatherForecast()
     }
 
@@ -29,21 +37,49 @@ class WeatherViewController: UIViewController {
     func setup(interactor: WeatherForecastLogic) {
         self.interactor = interactor
     }
+
+    func updateCurrentDayWeatherLabels(_ viewModel: CurrentDayForecastVM) {
+        temperatureLabel.text = viewModel.temperature
+        currentTemperatureLabel.text = viewModel.temperature
+        cityLabel.text = viewModel.cityName
+        minTemperatureLabel.text = viewModel.minimalTemperature
+        maxTemperatureLabel.text = viewModel.maximalTemperature
+        weatherDescriptionLabel.text = viewModel.weatherDescription
+    }
+
+    func updateViewBackground(_ background: ViewBackground) {
+        weatherImage.image = UIImage(named: background.weatherImage)
+        tableView.backgroundColor = UIColor(named: background.backgroundColor)
+        moreCurrentDayTemperatureDetailsLabel.addBackground(color: UIColor(named: background.backgroundColor))
+    }
 }
 
-extension WeatherViewController: WeatherView {
-    func didUpdateCurrentForecast(currentDayForecast: Forecast) {
+extension WeatherViewController: WeatherDisplayLogic {
+    func displayViewBackground(_ background: ViewBackground) {
+        DispatchQueue.main.async {
+            self.updateViewBackground(background)
+        }
+    }
+    func displayCurrentDayWeather(viewModel: CurrentDayForecastVM) {
+        DispatchQueue.main.async {
+            self.updateCurrentDayWeatherLabels(viewModel)
+        }
     }
 
-    func didUpdateFiveDaysForecast() {
-
+    func displayComingDaysWeather(cellRepresentable: [ComingDaysForecastVM]) {
+        tableManager.weatherCellviewModels = cellRepresentable
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
-
+    
     func didUpdateWithError() {
-
+        
     }
-
+    
     func didChangeTheme() {
         
     }
 }
+
+

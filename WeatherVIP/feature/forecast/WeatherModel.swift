@@ -8,55 +8,63 @@
 
 import Foundation
 
-struct Forecast: Codable {
-    let weather: [Weather]?
-    let main: Main?
-    let dt: Int?
-    let timezone: Int?
-    let id: Int?
-    let name: String?
-    let dateString: String?
-    enum CodingKeys: String, CodingKey {
-        case weather
-        case main
-        case dt, timezone, id, name
-        case dateString = "dt_txt"
+typealias Forecast = WeatherModelResponse.Forecast
+typealias ForecastList = WeatherModelResponse.ForecastList
+
+typealias ForecastRequest = WeatherModelRequest.Body
+
+enum WeatherModelRequest {
+    struct Body {
+        let latitude: String
+        let longitude: String
     }
 }
 
-struct Main: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double?
-    let pressure, humidity: Int?
-    enum CodingKeys: String, CodingKey {
-        case temp
-        case feelsLike = "feels_like"
-        case tempMin = "temp_min"
-        case tempMax = "temp_max"
-        case pressure, humidity
+enum WeatherModelResponse {
+    struct Forecast: Codable {
+        let weather: [Weather]
+        let main: Main
+        let unixDate: Int
+        let forecastID: Int?
+        let name: String?
+        let dateString: String?
+        enum CodingKeys: String, CodingKey {
+            case weather
+            case main
+            case  name
+            case forecastID = "id"
+            case unixDate = "dt"
+            case dateString = "dt_txt"
+        }
     }
-}
-
-struct Weather: Codable {
-    let id: Int?
-    let main, weatherDescription, icon: String?
-    enum CodingKeys: String, CodingKey {
-        case id, main
-        case weatherDescription = "description"
-        case icon
+    struct Main: Codable {
+        let temp: Double
+        let feelsLike: Double
+        let tempMin: Double
+        let tempMax: Double
+        let pressure, humidity: Int
+        enum CodingKeys: String, CodingKey {
+            case temp
+            case feelsLike = "feels_like"
+            case tempMin = "temp_min"
+            case tempMax = "temp_max"
+            case pressure, humidity
+        }
     }
-}
+    struct Weather: Codable {
+        let weatherID: Int
+        let main: String
+        let icon: String
+        let weatherDescription: String
+        enum CodingKeys: String, CodingKey {
+            case main
+            case weatherDescription = "description"
+            case icon
+            case weatherID = "id"
+        }
+    }
 
-enum WeatherType: String {
-    case rainy = "rain"
-    case sunny = "partlysunny"
-    case cloudy = "clear"
-}
-
-struct ForecastList: Codable {
-    var list: [Forecast]
-}
-
-enum Theme: String {
-    case forest
-    case sea
+    struct ForecastList: Codable {
+        var list: [Forecast]
+    }
 }

@@ -34,14 +34,24 @@ class WeatherInteractor: WeatherForecastLogic {
     }
 
     func fetchCurrentDayWeather(_ lat: String, lng: String) {
-        weatherService.getCurrentDayWeather(lat: lat, lng: lng) {[weak self] (result: Result<Forecast, APIError> ) in
-
+        weatherService.getCurrentDayWeather(lat: lat, lng: lng) {[weak self] result in
+            switch result {
+            case .success(let forecast):
+                self?.presenter.presentCurrentDayWeather(forecast: forecast)
+            case .failure(let error):
+                self?.presenter.presentError(error: error)
+            }
         }
     }
 
     func fetchFivedaysWeather(_ lat: String, lng: String) {
-        weatherService.getFivedaysWeather(lat: lat, lng: lat) { [weak self] (result: Result<ForecastList, APIError> )  in
-
+        weatherService.getFivedaysWeather(lat: lat, lng: lat) { [weak self] result  in
+            switch result {
+            case .success(let forecastList):
+                self?.presenter.presentFiveDaysWeather(forecastList: forecastList)
+            case .failure(let error):
+                self?.presenter.presentError(error: error)
+            }
         }
     }
 }
