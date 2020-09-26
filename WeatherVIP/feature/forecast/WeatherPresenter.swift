@@ -19,7 +19,7 @@ protocol WeatherCellView {
 protocol WeatherPresentationLogic {
     func presentCurrentDayWeather(forecast: Forecast)
     func presentFiveDaysWeather(forecastList: ForecastList)
-    func presentError(error: APIError)
+    func presentError(error: String)
 }
 
 class WeatherPresenter {
@@ -158,8 +158,8 @@ extension WeatherPresenter: WeatherPresentationLogic {
         view?.displayComingDaysWeather(cellRepresentable: viewModels)
     }
     
-    func presentError(error: APIError) {
-        
+    func presentError(error: String) {
+        view?.displayError(error)
     }
     
 }

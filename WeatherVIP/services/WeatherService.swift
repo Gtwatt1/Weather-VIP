@@ -10,20 +10,24 @@ import Foundation
 import CoreLocation
 
 protocol WeatherServiceProtocol {
-    func getCurrentDayWeather(lat: String, lng: String, completion: @escaping (Result<Forecast, APIError>) -> Void )
-    func getFivedaysWeather(lat: String, lng: String, completion: @escaping (Result<ForecastList, APIError>) -> Void)
+    func getCurrentDayWeather(requestBody: ForecastRequest,
+                              completion: @escaping (Result<Forecast, APIError>) -> Void )
+    func getFivedaysWeather(requestBody: ForecastRequest,
+                            completion: @escaping (Result<ForecastList, APIError>) -> Void)
 }
 
 class WeatherService: WeatherServiceProtocol {
-    func getCurrentDayWeather(lat: String, lng: String, completion: @escaping (Result<Forecast, APIError>) -> Void) {
-        let url = String(format: URLConstants.getCurrentForcast, String(lat), String(lng))
+    func getCurrentDayWeather(requestBody: ForecastRequest,
+                              completion: @escaping (Result<Forecast, APIError>) -> Void) {
+        let url = String(format: URLConstants.getCurrentForcast, requestBody.latitude, requestBody.longitude)
         Networker.shared.makeGetRequest(url: url) {(result: Result<Forecast, APIError>) in
             completion(result)
         }
     }
 
-    func getFivedaysWeather(lat: String, lng: String, completion: @escaping (Result< ForecastList, APIError>) -> Void) {
-        let url = String(format: URLConstants.getFiveDaysForecast, String(lat), String(lng))
+    func getFivedaysWeather(requestBody: ForecastRequest,
+                            completion: @escaping (Result< ForecastList, APIError>) -> Void) {
+        let url = String(format: URLConstants.getFiveDaysForecast, requestBody.latitude, requestBody.longitude)
         Networker.shared.makeGetRequest(url: url) {(result: Result<ForecastList, APIError>) in
             completion(result)
         }

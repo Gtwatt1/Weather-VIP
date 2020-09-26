@@ -33,24 +33,24 @@ class WeatherInteractor: WeatherForecastLogic {
         locationService.startLocationRequest()
     }
 
-    func fetchCurrentDayWeather(_ lat: String, lng: String) {
-        weatherService.getCurrentDayWeather(lat: lat, lng: lng) {[weak self] result in
+    func fetchCurrentDayWeather(requestBody: ForecastRequest) {
+        weatherService.getCurrentDayWeather(requestBody: requestBody) {[weak self] result in
             switch result {
             case .success(let forecast):
                 self?.presenter.presentCurrentDayWeather(forecast: forecast)
             case .failure(let error):
-                self?.presenter.presentError(error: error)
+                self?.presenter.presentError(error: error.localizedDescription)
             }
         }
     }
 
-    func fetchFivedaysWeather(_ lat: String, lng: String) {
-        weatherService.getFivedaysWeather(lat: lat, lng: lat) { [weak self] result  in
+    func fetchFivedaysWeather(requestBody: ForecastRequest) {
+        weatherService.getFivedaysWeather(requestBody: requestBody) { [weak self] result  in
             switch result {
             case .success(let forecastList):
                 self?.presenter.presentFiveDaysWeather(forecastList: forecastList)
             case .failure(let error):
-                self?.presenter.presentError(error: error)
+                self?.presenter.presentError(error: error.localizedDescription)
             }
         }
     }
@@ -58,11 +58,12 @@ class WeatherInteractor: WeatherForecastLogic {
 
 extension WeatherInteractor: LocationServiceDelegate {
     func didGetLocation(_ lat: String, lng: String) {
-        fetchCurrentDayWeather(lat, lng: lng)
-        fetchFivedaysWeather(lat, lng: lng)
+        let requestBody = ForecastRequest(latitude: lat, longitude: lng)
+        fetchCurrentDayWeather(requestBody: requestBody)
+        fetchFivedaysWeather(requestBody: requestBody)
     }
 
     func locationdidFail(_ reason: String) {
-
+        presenter.presentError(error: reason)
     }
 }

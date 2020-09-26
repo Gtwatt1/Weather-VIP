@@ -11,7 +11,8 @@ import UIKit
 protocol WeatherDisplayLogic: class {
     func displayCurrentDayWeather(viewModel: CurrentDayForecastVM)
     func displayViewBackground(_ background: ViewBackground)
-    func displayComingDaysWeather(cellRepresentable: [ComingDaysForecastVM]) 
+    func displayComingDaysWeather(cellRepresentable: [ComingDaysForecastVM])
+    func displayError(_ error : String)
 }
 
 class WeatherViewController: UIViewController {
@@ -45,6 +46,7 @@ class WeatherViewController: UIViewController {
         minTemperatureLabel.text = viewModel.minimalTemperature
         maxTemperatureLabel.text = viewModel.maximalTemperature
         weatherDescriptionLabel.text = viewModel.weatherDescription
+        [temperatureLabel, weatherDescriptionLabel, cityLabel].forEach({$0.fadeIn()})
     }
 
     func updateViewBackground(_ background: ViewBackground) {
@@ -72,14 +74,8 @@ extension WeatherViewController: WeatherDisplayLogic {
             self.tableView.reloadData()
         }
     }
-    
-    func didUpdateWithError() {
-        
-    }
-    
-    func didChangeTheme() {
-        
+
+    func displayError(_ error: String) {
+        showAlert(withMessage: error)
     }
 }
-
-
