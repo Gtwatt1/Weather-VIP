@@ -18,7 +18,6 @@
 		5A53AA97251DAC8400705C24 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA96251DAC8300705C24 /* ApiKey.swift */; };
 		5A53AA99251DB44800705C24 /* WeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA98251DB44700705C24 /* WeatherPresenter.swift */; };
 		5A53AAA1251DB52400705C24 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9C251DB52300705C24 /* Date+Extension.swift */; };
-		5A53AAA2251DB52400705C24 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9D251DB52300705C24 /* UIView+Extension.swift */; };
 		5A53AAA3251DB52400705C24 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9E251DB52300705C24 /* UIViewController+Extension.swift */; };
 		5A53AAA4251DB52400705C24 /* UIStackview+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9F251DB52300705C24 /* UIStackview+Extension.swift */; };
 		5A53AAC5251EF53600705C24 /* WeatherBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AAC4251EF53600705C24 /* WeatherBuilder.swift */; };
@@ -76,7 +75,6 @@
 		5A53AA96251DAC8300705C24 /* ApiKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		5A53AA98251DB44700705C24 /* WeatherPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherPresenter.swift; sourceTree = "<group>"; };
 		5A53AA9C251DB52300705C24 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		5A53AA9D251DB52300705C24 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5A53AA9E251DB52300705C24 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		5A53AA9F251DB52300705C24 /* UIStackview+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackview+Extension.swift"; sourceTree = "<group>"; };
 		5A53AAC4251EF53600705C24 /* WeatherBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBuilder.swift; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				5A53AA9C251DB52300705C24 /* Date+Extension.swift */,
-				5A53AA9D251DB52300705C24 /* UIView+Extension.swift */,
 				5A53AA9E251DB52300705C24 /* UIViewController+Extension.swift */,
 				5A53AA9F251DB52300705C24 /* UIStackview+Extension.swift */,
 			);
@@ -458,7 +455,6 @@
 				5A53AACC251F928600705C24 /* ThemeConstants.swift in Sources */,
 				5A53AACA251F7DA200705C24 /* WeatherViewModel.swift in Sources */,
 				5A53AAD72520564A00705C24 /* LightModeInterfaceStyle.swift in Sources */,
-				5A53AAA2251DB52400705C24 /* UIView+Extension.swift in Sources */,
 				5A53AAD92520615600705C24 /* WeatherGateway.swift in Sources */,
 				5A53AAEC2520A18C00705C24 /* WeatherConstants.swift in Sources */,
 				5A53AAD52520563100705C24 /* DarkModeInterfaceStyle.swift in Sources */,

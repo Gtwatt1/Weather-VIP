@@ -57,10 +57,12 @@ class MockLocalWeatherGateWay: LocalWeatherGateway {
     }
 
     func getCurrentDayWeather(requestBody: ForecastRequestLocation?, completion: ((Result<Forecast, Error>) -> Void)?) {
+        // Implementation not needed here
     }
 
     func getFivedaysWeather(requestBody: ForecastRequestLocation?,
                             completion: ((Result<ForecastList, Error>) -> Void)?) {
+        // Implementation not needed here
     }
 }
 

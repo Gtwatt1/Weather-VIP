@@ -17,5 +17,7 @@ protocol WeatherGateway {
 }
 
 extension WeatherGateway {
-    func fetchCachedWeatherData() {}
+    func fetchCachedWeatherData() {
+        // Making protocol function optional
+    }
 }
