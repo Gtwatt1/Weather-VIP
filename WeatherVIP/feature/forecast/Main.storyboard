@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -72,6 +73,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSw-rZ-9fB">
+                                <rect key="frame" x="0.0" y="445" width="414" height="54"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="wQ5-4T-AZp">
                                 <rect key="frame" x="0.0" y="445" width="414" height="54"/>
                                 <subviews>
@@ -161,12 +166,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="nSw-rZ-9fB" firstAttribute="top" secondItem="wQ5-4T-AZp" secondAttribute="top" id="0Hv-Q7-Giu"/>
                             <constraint firstItem="maJ-1l-cA5" firstAttribute="centerX" secondItem="9KX-cb-VYx" secondAttribute="centerX" id="0VT-jz-U9V"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9KX-cb-VYx" secondAttribute="trailing" id="0rU-Uz-d8X"/>
                             <constraint firstItem="g9t-BZ-KII" firstAttribute="top" secondItem="wQ5-4T-AZp" secondAttribute="bottom" id="4a7-XM-oDq"/>
                             <constraint firstItem="maJ-1l-cA5" firstAttribute="top" secondItem="dGg-uq-6QJ" secondAttribute="bottom" constant="2" id="Ehk-rf-psY"/>
                             <constraint firstItem="9KX-cb-VYx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ejz-NV-QtC"/>
+                            <constraint firstItem="nSw-rZ-9fB" firstAttribute="bottom" secondItem="wQ5-4T-AZp" secondAttribute="bottom" id="NzR-OF-IqA"/>
                             <constraint firstItem="cqw-Vc-bx8" firstAttribute="leading" secondItem="wQ5-4T-AZp" secondAttribute="leading" id="OI1-Cn-j5W"/>
+                            <constraint firstItem="nSw-rZ-9fB" firstAttribute="trailing" secondItem="wQ5-4T-AZp" secondAttribute="trailing" id="PX8-Yi-Wiz"/>
                             <constraint firstItem="wQ5-4T-AZp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RNs-OT-wiu"/>
                             <constraint firstItem="9KX-cb-VYx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.45" id="Thu-U8-zVd"/>
                             <constraint firstItem="g9t-BZ-KII" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yl6-x5-oCV"/>
@@ -178,6 +186,7 @@
                             <constraint firstItem="wQ5-4T-AZp" firstAttribute="top" secondItem="9KX-cb-VYx" secondAttribute="bottom" constant="-2" id="k3E-XD-FCD"/>
                             <constraint firstItem="SL3-f4-M10" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="l3S-hA-Azn"/>
                             <constraint firstItem="SL3-f4-M10" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lP4-d2-vTD"/>
+                            <constraint firstItem="nSw-rZ-9fB" firstAttribute="leading" secondItem="wQ5-4T-AZp" secondAttribute="leading" id="ntN-UL-Rvd"/>
                             <constraint firstAttribute="bottom" secondItem="g9t-BZ-KII" secondAttribute="bottom" id="qMv-jA-E5k"/>
                             <constraint firstItem="cqw-Vc-bx8" firstAttribute="bottom" secondItem="wQ5-4T-AZp" secondAttribute="bottom" constant="2" id="sPo-rj-AkI"/>
                             <constraint firstItem="cqw-Vc-bx8" firstAttribute="trailing" secondItem="wQ5-4T-AZp" secondAttribute="trailing" id="v2z-yV-bpW"/>
@@ -190,6 +199,7 @@
                         <outlet property="maxTemperatureLabel" destination="L6B-Zw-CDW" id="pg7-2T-Urh"/>
                         <outlet property="minTemperatureLabel" destination="fH8-w3-jan" id="u8S-kj-m9h"/>
                         <outlet property="moreCurrentDayTemperatureDetailsLabel" destination="wQ5-4T-AZp" id="V3W-0W-Ntd"/>
+                        <outlet property="stackViewBackground" destination="nSw-rZ-9fB" id="MvL-Wq-kJx"/>
                         <outlet property="tableView" destination="g9t-BZ-KII" id="WkS-Es-HY4"/>
                         <outlet property="temperatureLabel" destination="dGg-uq-6QJ" id="lJC-je-mnf"/>
                         <outlet property="weatherDescriptionLabel" destination="maJ-1l-cA5" id="yhi-TN-8mW"/>
