@@ -19,7 +19,6 @@ class WeatherViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
@@ -55,11 +54,11 @@ class WeatherViewController: UIViewController {
     func updateCurrentDayWeatherLabels(_ viewModel: CurrentDayForecastVM) {
         temperatureLabel.text = viewModel.temperature
         currentTemperatureLabel.text = viewModel.temperature
-        cityLabel.text = viewModel.cityName
+        title = viewModel.cityName
         minTemperatureLabel.text = viewModel.minimalTemperature
         maxTemperatureLabel.text = viewModel.maximalTemperature
         weatherDescriptionLabel.text = viewModel.weatherDescription
-        [temperatureLabel, weatherDescriptionLabel, cityLabel].forEach({$0.fadeIn()})
+        [temperatureLabel, weatherDescriptionLabel].forEach({$0.fadeIn()})
     }
 
     func updateViewBackground(_ background: ViewBackground) {
