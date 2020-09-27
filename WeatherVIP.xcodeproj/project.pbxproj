@@ -13,9 +13,9 @@
 		5A53AA8A251DA4C400705C24 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA89251DA4C400705C24 /* LocationService.swift */; };
 		5A53AA8C251DA8D500705C24 /* ApiWeatherGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA8B251DA8D500705C24 /* ApiWeatherGatewayImpl.swift */; };
 		5A53AA8E251DA95200705C24 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA8D251DA95200705C24 /* WeatherModel.swift */; };
-		5A53AA94251DABB100705C24 /* Networker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA92251DABB100705C24 /* Networker.swift */; };
+		5A53AA94251DABB100705C24 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA92251DABB100705C24 /* ApiClient.swift */; };
 		5A53AA95251DABB100705C24 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA93251DABB100705C24 /* ApiError.swift */; };
-		5A53AA97251DAC8400705C24 /* UrlConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA96251DAC8300705C24 /* UrlConstants.swift */; };
+		5A53AA97251DAC8400705C24 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA96251DAC8300705C24 /* ApiKey.swift */; };
 		5A53AA99251DB44800705C24 /* WeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA98251DB44700705C24 /* WeatherPresenter.swift */; };
 		5A53AAA1251DB52400705C24 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9C251DB52300705C24 /* Date+Extension.swift */; };
 		5A53AAA2251DB52400705C24 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AA9D251DB52300705C24 /* UIView+Extension.swift */; };
@@ -34,6 +34,8 @@
 		5A53AADC252063C100705C24 /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AADB252063C100705C24 /* UserDefaultHelper.swift */; };
 		5A53AADE252064E600705C24 /* LocalWeatherGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AADD252064E600705C24 /* LocalWeatherGateway.swift */; };
 		5A53AAE02520682200705C24 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AADF2520682200705C24 /* WeatherService.swift */; };
+		5A53AAE225208D5000705C24 /* CurrentDayApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AAE125208D5000705C24 /* CurrentDayApiRequest.swift */; };
+		5A53AAE42520912100705C24 /* ComingDayApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AAE32520912100705C24 /* ComingDayApiRequest.swift */; };
 		5AA03AFF251B54E9009BF523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03AFE251B54E9009BF523 /* AppDelegate.swift */; };
 		5AA03B01251B54E9009BF523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03B00251B54E9009BF523 /* SceneDelegate.swift */; };
 		5AA03B03251B54E9009BF523 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03B02251B54E9009BF523 /* ViewController.swift */; };
@@ -59,9 +61,9 @@
 		5A53AA89251DA4C400705C24 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		5A53AA8B251DA8D500705C24 /* ApiWeatherGatewayImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiWeatherGatewayImpl.swift; sourceTree = "<group>"; };
 		5A53AA8D251DA95200705C24 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
-		5A53AA92251DABB100705C24 /* Networker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networker.swift; sourceTree = "<group>"; };
+		5A53AA92251DABB100705C24 /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		5A53AA93251DABB100705C24 /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
-		5A53AA96251DAC8300705C24 /* UrlConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlConstants.swift; sourceTree = "<group>"; };
+		5A53AA96251DAC8300705C24 /* ApiKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		5A53AA98251DB44700705C24 /* WeatherPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherPresenter.swift; sourceTree = "<group>"; };
 		5A53AA9C251DB52300705C24 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		5A53AA9D251DB52300705C24 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -80,6 +82,8 @@
 		5A53AADB252063C100705C24 /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		5A53AADD252064E600705C24 /* LocalWeatherGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWeatherGateway.swift; sourceTree = "<group>"; };
 		5A53AADF2520682200705C24 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		5A53AAE125208D5000705C24 /* CurrentDayApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDayApiRequest.swift; sourceTree = "<group>"; };
+		5A53AAE32520912100705C24 /* ComingDayApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingDayApiRequest.swift; sourceTree = "<group>"; };
 		5AA03AFB251B54E9009BF523 /* WeatherVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA03AFE251B54E9009BF523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AA03B00251B54E9009BF523 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,7 +127,7 @@
 			children = (
 				5A53AAD12520551500705C24 /* theme */,
 				5A53AA9A251DB52300705C24 /* extensions */,
-				5A53AA96251DAC8300705C24 /* UrlConstants.swift */,
+				5A53AA96251DAC8300705C24 /* ApiKey.swift */,
 				5A53AA91251DAB9E00705C24 /* network */,
 				5A53AAC6251EF56800705C24 /* SceneBuilder.swift */,
 				5A53AACB251F928600705C24 /* ThemeConstants.swift */,
@@ -156,6 +160,8 @@
 				5A53AADB252063C100705C24 /* UserDefaultHelper.swift */,
 				5A53AADD252064E600705C24 /* LocalWeatherGateway.swift */,
 				5A53AADF2520682200705C24 /* WeatherService.swift */,
+				5A53AAE125208D5000705C24 /* CurrentDayApiRequest.swift */,
+				5A53AAE32520912100705C24 /* ComingDayApiRequest.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -164,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				5A53AA93251DABB100705C24 /* ApiError.swift */,
-				5A53AA92251DABB100705C24 /* Networker.swift */,
+				5A53AA92251DABB100705C24 /* ApiClient.swift */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -375,10 +381,12 @@
 				5AA03AFF251B54E9009BF523 /* AppDelegate.swift in Sources */,
 				5A53AA8A251DA4C400705C24 /* LocationService.swift in Sources */,
 				5A53AAC7251EF56800705C24 /* SceneBuilder.swift in Sources */,
-				5A53AA94251DABB100705C24 /* Networker.swift in Sources */,
-				5A53AA97251DAC8400705C24 /* UrlConstants.swift in Sources */,
+				5A53AA94251DABB100705C24 /* ApiClient.swift in Sources */,
+				5A53AA97251DAC8400705C24 /* ApiKey.swift in Sources */,
 				5A53AAC5251EF53600705C24 /* WeatherBuilder.swift in Sources */,
+				5A53AAE42520912100705C24 /* ComingDayApiRequest.swift in Sources */,
 				5A53AAD3252055DA00705C24 /* UserInterfaceStyle.swift in Sources */,
+				5A53AAE225208D5000705C24 /* CurrentDayApiRequest.swift in Sources */,
 				5A53AACE251FB89100705C24 /* WeatherCell.swift in Sources */,
 				5AA03B01251B54E9009BF523 /* SceneDelegate.swift in Sources */,
 				5A53AAA1251DB52400705C24 /* Date+Extension.swift in Sources */,

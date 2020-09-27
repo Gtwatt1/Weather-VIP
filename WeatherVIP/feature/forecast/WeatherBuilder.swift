@@ -12,7 +12,8 @@ import UIKit
 class WeatherBuilder: SceneBuilder {
     func build() -> UIViewController {
         let localWeatherGateway = LocalWeatherGatewayImpl()
-        let apiWeatherGateway = ApiWeatherGatewayImpl()
+        let apiClientImpl = APIClientImplementation()
+        let apiWeatherGateway = ApiWeatherGatewayImpl(apiClient: apiClientImpl)
         let weatherService = WeatherService(localWeatherGateway: localWeatherGateway,
                                             apiWeatherGateway: apiWeatherGateway)
         let presenter = WeatherPresenter()

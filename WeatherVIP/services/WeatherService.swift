@@ -48,7 +48,7 @@ class WeatherService: WeatherGateway {
             completion(result)
         }
     }
-    
+
     func fetchCachedWeatherData() {
         localWeatherGateway.fetchCachedWeatherData()
     }

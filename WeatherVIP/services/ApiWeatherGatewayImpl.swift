@@ -12,12 +12,17 @@ protocol ApiWeatherGateway: WeatherGateway {
 }
 
 class ApiWeatherGatewayImpl: ApiWeatherGateway {
+    let apiClient: ApiClient
+    init(apiClient: ApiClient) {
+        self.apiClient = apiClient
+    }
+
     func getCurrentDayWeather(requestBody: ForecastRequestLocation?, completion: ((Result<Forecast, Error>) -> Void)?) {
         guard let requestBody = requestBody, let completion = completion else {
             return
         }
-        let url = String(format: URLConstants.getCurrentForcast, requestBody.latitude, requestBody.longitude)
-        Networker.shared.makeGetRequest(url: url) {(result: Result<Forecast, Error>) in
+        let currentDayRequest = CurrentDayApiRequest(location: requestBody)
+        apiClient.execute(request: currentDayRequest) {(result: Result<Forecast, Error>) in
             completion(result)
         }
     }
@@ -27,8 +32,8 @@ class ApiWeatherGatewayImpl: ApiWeatherGateway {
         guard let requestBody = requestBody, let completion = completion else {
             return
         }
-        let url = String(format: URLConstants.getFiveDaysForecast, requestBody.latitude, requestBody.longitude)
-        Networker.shared.makeGetRequest(url: url) {(result: Result<ForecastList, Error>) in
+        let comingDaysRequest = ComingDaysApiRequest(location: requestBody)
+        apiClient.execute(request: comingDaysRequest) {(result: Result<ForecastList, Error>) in
             completion(result)
         }
     }

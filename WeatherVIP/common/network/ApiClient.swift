@@ -8,16 +8,32 @@
 
 import Foundation
 
-class Networker {
-    static var shared = Networker()
+protocol ApiClient {
+    func execute<T: Decodable>(request: ApiRequest,
+                               completion: @escaping (Result<T, Error>) -> Void)
+}
 
-    func makeGetRequest<T: Decodable>(session: URLSession = URLSession.shared, url: String,
-                                      completion: @escaping (Result<T, Error>) -> Void) {
-        guard let url  = URL(string: url) else {
-            completion(.failure(APIError.badURL))
-            return
-        }
-        let task = session.dataTask(with: url) { (data, response, _) in
+protocol ApiRequest {
+    var urlRequest: URLRequest { get }
+}
+
+protocol URLSessionProtocol {
+    func dataTask(with request: URLRequest,
+                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+}
+
+extension URLSession: URLSessionProtocol { }
+
+class APIClientImplementation: ApiClient {
+    let urlSession: URLSessionProtocol
+
+    init(urlSession: URLSessionProtocol = URLSession.shared ) {
+        self.urlSession =  urlSession
+    }
+
+    func execute<T: Decodable>(request: ApiRequest,
+                               completion: @escaping (Result<T, Error>) -> Void) {
+        let task = urlSession.dataTask(with: request.urlRequest) { (data, response, _) in
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(APIError.requestFailed))
                 return
