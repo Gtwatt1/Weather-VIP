@@ -1,0 +1,80 @@
+//
+//  WeatherServiceTest.swift
+//  WeatherVIPTests
+//
+//  Created by Olorunshola Godwin on 27/09/2020.
+//  Copyright © 2020 Olorunshola Godwin. All rights reserved.
+//
+
+import Foundation
+import XCTest
+@testable import WeatherVIP
+
+class WeatherServiceTest: XCTestCase {
+    func test_getCurrentDayWeather_success_savesCurrentDayForecast() {
+        //arrange
+        let localWeatherGateway = MockLocalWeatherGateWay()
+        let apiWeatherGateway = MockApiWeatherGateway()
+        let sut = WeatherService(localWeatherGateway: localWeatherGateway, apiWeatherGateway: apiWeatherGateway)
+        let requestBody = ForecastRequestLocation(latitude: "0", longitude: "0")
+        let exp = expectation(description: "get current day weather expectation")
+        //act
+        sut.getCurrentDayWeather(requestBody: requestBody) { _ in
+            //assert
+            XCTAssertTrue(localWeatherGateway.saveCurrentDayForecastCalled)
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func test_getCurrentDayWeather_success_savesComingDaysForecast() {
+        //arrange
+        let localWeatherGateway = MockLocalWeatherGateWay()
+        let apiWeatherGateway = MockApiWeatherGateway()
+        let sut = WeatherService(localWeatherGateway: localWeatherGateway, apiWeatherGateway: apiWeatherGateway)
+        let requestBody = ForecastRequestLocation(latitude: "0", longitude: "0")
+        let exp = expectation(description: "get current day weather expectation")
+        //act
+        sut.getFivedaysWeather(requestBody: requestBody) { _ in
+            //assert
+            XCTAssertTrue(localWeatherGateway.saveComingDaysForecastCalled)
+            exp.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+}
+
+class MockLocalWeatherGateWay: LocalWeatherGateway {
+    var saveCurrentDayForecastCalled = false
+    var saveComingDaysForecastCalled = false
+
+    func saveCurrentDayForecast(forecast: Forecast) {
+        saveCurrentDayForecastCalled = true
+    }
+
+    func saveComingDaysForecast(forecastList: ForecastList) {
+        saveComingDaysForecastCalled = true
+    }
+
+    func getCurrentDayWeather(requestBody: ForecastRequestLocation?, completion: ((Result<Forecast, Error>) -> Void)?) {
+    }
+
+    func getFivedaysWeather(requestBody: ForecastRequestLocation?,
+                            completion: ((Result<ForecastList, Error>) -> Void)?) {
+    }
+}
+
+class MockApiWeatherGateway: ApiWeatherGateway {
+    func getCurrentDayWeather(requestBody: ForecastRequestLocation?, completion: ((Result<Forecast, Error>) -> Void)?) {
+        if let forecast = Seeds.forecast, let completion = completion {
+            completion(.success(forecast))
+        }
+    }
+
+    func getFivedaysWeather(requestBody: ForecastRequestLocation?,
+                            completion: ((Result<ForecastList, Error>) -> Void)?) {
+        if let forecast = Seeds.forecastList, let completion = completion {
+            completion(.success(forecast))
+        }
+    }
+}
