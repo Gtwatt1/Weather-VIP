@@ -16,26 +16,26 @@ protocol WeatherPresentationLogic {
 }
 
 class WeatherPresenter {
-    weak private var view: WeatherDisplayLogic?
+    weak var view: WeatherDisplayLogic?
     var userInterfaceStyle: UserInterfaceStyle!
 
     func setView(view: WeatherDisplayLogic) {
         self.view = view
     }
 
-    private func getWeatherType(_ weatherMain: String) -> WeatherType {
-        switch weatherMain.lowercased() {
-        case "rain", "thunderstorm", "drizzle", "snow", "mist":
+    func getWeatherType(_ weatherName: String) -> WeatherType {
+        switch weatherName.lowercased() {
+        case let value where WeatherConstants.RainyWeatherType.contains(value):
             return WeatherType.rainy
-        case let str where str.contains("cloud"):
+        case let value where value.contains("cloud"):
             return WeatherType.cloudy
         default:
             return WeatherType.sunny
         }
     }
 
-    private func getWeatherBackground(_ weatherMain: String) -> ViewBackground {
-        let weatherType = getWeatherType(weatherMain)
+    func getWeatherBackground(_ weatherName: String) -> ViewBackground {
+        let weatherType = getWeatherType(weatherName)
         switch weatherType {
         case .cloudy:
             return userInterfaceStyle.fetchCloudyBackground()
@@ -51,7 +51,7 @@ class WeatherPresenter {
         return date.dayOfWeek()
     }
 
-    private func currentDayViewModelMapping(forecast: Forecast) -> CurrentDayForecastVM {
+    func currentDayViewModelMapping(forecast: Forecast) -> CurrentDayForecastVM {
         let viewModel = CurrentDayForecastVM(cityName: forecast.name ?? "",
                                              weatherDescription: forecast.weather[0].weatherDescription.capitalized,
                                              temperature: decorateWithTemperatureDegree(forecast.main.temp),
@@ -60,7 +60,7 @@ class WeatherPresenter {
         return viewModel
     }
 
-    private func comingDaysViewModelMapping(forecasts: [Forecast]) -> [ComingDaysForecastVM] {
+    func comingDaysViewModelMapping(forecasts: [Forecast]) -> [ComingDaysForecastVM] {
         var comingDaysViewModel = [ComingDaysForecastVM]()
         let filteredForecaset = filterEarlyMorningForecast(forecasts)
         filteredForecaset.forEach {
@@ -72,14 +72,14 @@ class WeatherPresenter {
         return comingDaysViewModel
     }
 
-    private func decorateWithTemperatureDegree(_ value: Double) -> String {
+    func decorateWithTemperatureDegree(_ value: Double) -> String {
         return "\(value)º"
     }
 
-    private func filterEarlyMorningForecast(_ forecastList: [Forecast]) -> [Forecast] {
+    func filterEarlyMorningForecast(_ forecastList: [Forecast]) -> [Forecast] {
         let earlyMorningForecast = forecastList.filter({
             if let dateTime = $0.dateString {
-                return dateTime.contains("06:00:00")
+                return dateTime.contains(WeatherConstants.preferredWeatherType)
             }
             return false
         })
