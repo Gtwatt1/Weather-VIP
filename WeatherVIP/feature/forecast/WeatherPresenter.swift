@@ -15,7 +15,6 @@ protocol WeatherCellView {
     func displayTemperature(temp: String)
 }
 
-
 protocol WeatherPresentationLogic {
     func presentCurrentDayWeather(forecast: Forecast)
     func presentFiveDaysWeather(forecastList: ForecastList)
@@ -26,17 +25,17 @@ class WeatherPresenter {
     var backgroundColor = "", weatherImage = "", error = ""
     weak private var view: WeatherDisplayLogic?
     var fiveDaysForecast: [Forecast]?
-    
+
     func setView(view: WeatherDisplayLogic) {
         self.view = view
     }
-    
+
     var weatherType = WeatherType.cloudy {
         didSet {
             setBackgroundView()
         }
     }
-    
+
     func changeTheme() {
         if let theme = theme {
             if  theme == .forest {
@@ -54,7 +53,7 @@ class WeatherPresenter {
         cell.displayDay(day: cellDay)
         cell.displayTemperature(temp: "\(Int(dayForecast?.main.temp.rounded() ?? 0.0) )º")
     }
-    
+
     func setBackgroundView() {
         switch weatherType {
         case .cloudy:
@@ -68,7 +67,7 @@ class WeatherPresenter {
             backgroundColor = "47AB2F"
         }
     }
-    
+
     var theme: Theme? {
         didSet {
             if let _ = theme {
@@ -77,7 +76,7 @@ class WeatherPresenter {
             //            view?.didChangeTheme()
         }
     }
-    
+
     private func getWeatherType(_ weatherMain: String) -> WeatherType {
         switch weatherMain.lowercased() {
         case "rain", "thunderstorm", "drizzle", "snow", "mist":
@@ -88,7 +87,7 @@ class WeatherPresenter {
             return WeatherType.sunny
         }
     }
-    
+
     private func getWeatherBackground(_ weatherMain: String) -> ViewBackground {
         let weatherType = getWeatherType(weatherMain)
         switch weatherType {
@@ -103,12 +102,12 @@ class WeatherPresenter {
             return ViewBackground(weatherImage: backgroundImage, backgroundColor: ColorName.sunnyBackground)
         }
     }
-    
+
     func getDayOfTheWeek(intDate: Int) -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(intDate))
         return date.dayOfWeek()
     }
-    
+
     private func currentDayViewModelMapping(forecast: Forecast) -> CurrentDayForecastVM {
         let viewModel = CurrentDayForecastVM(cityName: forecast.name ?? "",
                                              weatherDescription: forecast.weather[0].weatherDescription.capitalized,
@@ -117,7 +116,7 @@ class WeatherPresenter {
                                              maximalTemperature: decorateWithTemperatureDegree(forecast.main.tempMax))
         return viewModel
     }
-    
+
     private func comingDaysViewModelMapping(forecasts: [Forecast]) -> [ComingDaysForecastVM] {
         var comingDaysViewModel = [ComingDaysForecastVM]()
         let filteredForecaset = filterEarlyMorningForecast(forecasts)
@@ -129,11 +128,11 @@ class WeatherPresenter {
         }
         return comingDaysViewModel
     }
-    
+
     private func decorateWithTemperatureDegree(_ value: Double) -> String {
         return "\(value)º"
     }
-    
+
     private func filterEarlyMorningForecast(_ forecastList: [Forecast]) -> [Forecast] {
         let earlyMorningForecast = forecastList.filter({
             if let dateTime = $0.dateString {
@@ -152,15 +151,14 @@ extension WeatherPresenter: WeatherPresentationLogic {
         view?.displayCurrentDayWeather(viewModel: viewModel)
         view?.displayViewBackground(weatherBackground)
     }
-    
+
     func presentFiveDaysWeather(forecastList: ForecastList) {
         let viewModels = comingDaysViewModelMapping(forecasts: forecastList.list)
         view?.displayComingDaysWeather(cellRepresentable: viewModels)
     }
-    
+
     func presentError(error: String) {
         view?.displayError(error)
     }
-    
-}
 
+}

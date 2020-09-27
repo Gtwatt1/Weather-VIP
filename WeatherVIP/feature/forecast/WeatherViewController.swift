@@ -12,7 +12,7 @@ protocol WeatherDisplayLogic: class {
     func displayCurrentDayWeather(viewModel: CurrentDayForecastVM)
     func displayViewBackground(_ background: ViewBackground)
     func displayComingDaysWeather(cellRepresentable: [ComingDaysForecastVM])
-    func displayError(_ error : String)
+    func displayError(_ error: String)
 }
 
 class WeatherViewController: UIViewController {
@@ -26,10 +26,12 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var moreCurrentDayTemperatureDetailsLabel: UIStackView!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var tableManager = WeatherTableManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = tableManager
+        tableView.delegate = tableManager
         interactor?.fetchWeatherForecast()
     }
 
@@ -64,6 +66,7 @@ extension WeatherViewController: WeatherDisplayLogic {
     }
     func displayCurrentDayWeather(viewModel: CurrentDayForecastVM) {
         DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
             self.updateCurrentDayWeatherLabels(viewModel)
         }
     }

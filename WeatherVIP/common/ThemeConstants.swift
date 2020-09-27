@@ -9,12 +9,10 @@
 import Foundation
 
 typealias ColorName = ThemeConstant.ColorNames
-enum ThemeConstant{
-    
-    enum ColorNames{
+enum ThemeConstant {
+    enum ColorNames {
         static let cloudyBackground = "cloudyBackground"
         static let rainyBackground = "rainyBackground"
         static let sunnyBackground = "sunnyBackground"
-
     }
 }

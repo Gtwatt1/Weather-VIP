@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class WeatherTableManager: NSObject {
-    
     var weatherCellviewModels: [ComingDaysForecastVM] = []
 }
 
