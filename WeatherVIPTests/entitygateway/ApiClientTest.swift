@@ -11,13 +11,14 @@ import XCTest
 @testable import WeatherVIP
 
 class ApiClientTest: XCTestCase {
+    let expectationMessage = "waiting for dataTask response"
     func test_apiClientExecute_returns_error_when_dataTaskReturnsError() {
         //arrange
         let mockUrlSession = MockURLSession()
         mockUrlSession.returnError = true
         let sut = APIClientImplementation(urlSession: mockUrlSession)
         let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
-        let exp = expectation(description: "waiting for dataTask response")
+        let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
             switch result {
@@ -38,7 +39,7 @@ class ApiClientTest: XCTestCase {
         mockUrlSession.return200 = true
         let sut = APIClientImplementation(urlSession: mockUrlSession)
         let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
-        let exp = expectation(description: "waiting for dataTask response")
+        let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
             switch result {
@@ -59,7 +60,7 @@ class ApiClientTest: XCTestCase {
         mockUrlSession.returnInCorrectData = true
         let sut = APIClientImplementation(urlSession: mockUrlSession)
         let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
-        let exp = expectation(description: "waiting for dataTask response")
+        let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
             switch result {
@@ -81,7 +82,7 @@ class ApiClientTest: XCTestCase {
         mockUrlSession.returnNilData = true
         let sut = APIClientImplementation(urlSession: mockUrlSession)
         let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
-        let exp = expectation(description: "waiting for dataTask response")
+        let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
             switch result {
@@ -101,7 +102,7 @@ class ApiClientTest: XCTestCase {
         let mockUrlSession = MockURLSession()
         let sut = APIClientImplementation(urlSession: mockUrlSession)
         let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
-        let exp = expectation(description: "waiting for dataTask response")
+        let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
             switch result {

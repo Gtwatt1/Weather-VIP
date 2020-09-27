@@ -11,6 +11,7 @@ import XCTest
 @testable import WeatherVIP
 
 class WeatherPresenterTest: XCTestCase {
+    let jsonDecodingError = "Json decoding failed"
     func test_view_initialized_when_setViewCalled() {
         //arrange
         let sut = WeatherPresenter()
@@ -105,7 +106,7 @@ class WeatherPresenterTest: XCTestCase {
             XCTAssertEqual(viewModel.minimalTemperature, "\(forecast.main.tempMin)" + "º")
             XCTAssertEqual(viewModel.maximalTemperature, "\(forecast.main.tempMax)" + "º")
         } else {
-            XCTFail("Json decoding failed")
+            XCTFail(jsonDecodingError)
         }
     }
     func test_comingDaysViewModelMapping_return_correct_comingDaysForecastVM() {
@@ -120,7 +121,7 @@ class WeatherPresenterTest: XCTestCase {
             XCTAssertEqual(firstVm?.weatherIcon, "rain")
             XCTAssertEqual(firstVm?.temperature, "293.55º")
         } else {
-            XCTFail("Json decoding failed")
+            XCTFail(jsonDecodingError)
         }
     }
     func test_filterEarlyMorningForecast_returns_only_morningWeatherData() {
@@ -132,7 +133,7 @@ class WeatherPresenterTest: XCTestCase {
             //assert
             XCTAssertEqual(viewModels.count, 1)
         } else {
-            XCTFail("Json decoding failed")
+            XCTFail(jsonDecodingError)
         }
     }
     func test_presentCurrentDayWeather_called_view_displayCurrentDayWeather() {
@@ -147,7 +148,7 @@ class WeatherPresenterTest: XCTestCase {
             //assert
             XCTAssertTrue(mockView.displayCurrentDayWeatherCalled)
         } else {
-            XCTFail("Json decoding failed")
+            XCTFail(jsonDecodingError)
         }
     }
     func test_presentCurrentDayWeather_called_view_displayViewBackground() {
@@ -162,7 +163,7 @@ class WeatherPresenterTest: XCTestCase {
             //assert
             XCTAssertTrue(mockView.displayViewBackgroundCalled)
         } else {
-            XCTFail("Json decoding failed")
+            XCTFail(jsonDecodingError)
         }
     }
     func test_presentFiveDaysWeather_called_view_displayComingDaysWeather() {
@@ -177,7 +178,7 @@ class WeatherPresenterTest: XCTestCase {
             //assert
             XCTAssertTrue(mockView.displayComingDaysWeatherCalled)
         } else {
-            XCTFail("Json decoding failed")
+            XCTFail(jsonDecodingError)
         }
     }
     func test_presentError_called_view_displayError() {
