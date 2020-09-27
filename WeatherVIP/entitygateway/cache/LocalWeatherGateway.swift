@@ -27,7 +27,7 @@ class LocalWeatherGatewayImpl: LocalWeatherGateway {
 
     func getCurrentDayWeather(requestBody: ForecastRequestLocation?,
                               completion: ((Result<Forecast, Error>) -> Void)?) {
-        if let currentDayForecast = UserDefaultHelper().get(Forecast.self, key: .currentDayForecast) {
+        if let currentDayForecast: Forecast = UserDefaultHelper().get(key: .currentDayForecast) {
             NotificationCenter.default.post(name: LocalWeatherGatewayImpl.cacheCurrentDayWeather,
                                             object: currentDayForecast)
         }
@@ -35,7 +35,7 @@ class LocalWeatherGatewayImpl: LocalWeatherGateway {
 
     func getFivedaysWeather(requestBody: ForecastRequestLocation?,
                             completion: ((Result<ForecastList, Error>) -> Void)?) {
-        if let currentDayForecast = UserDefaultHelper().get(ForecastList.self, key: .comingDaysForecast) {
+        if let currentDayForecast: ForecastList = UserDefaultHelper().get(key: .comingDaysForecast) {
             NotificationCenter.default.post(name: LocalWeatherGatewayImpl.cacheComingDaysWeather,
                                             object: currentDayForecast)
         }

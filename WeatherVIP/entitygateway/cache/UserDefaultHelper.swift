@@ -15,7 +15,7 @@ struct UserDefaultHelper {
         }
     }
 
-    func get<T: Decodable>(_ forClass: T.Type, key: UserDefaults.Keys) -> T? {
+    func get<T: Decodable>(key: UserDefaults.Keys) -> T? {
         if let data = key.dataValue, let object = try? JSONDecoder().decode(T.self, from: data) {
             return object
         }
