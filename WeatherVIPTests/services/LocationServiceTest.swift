@@ -22,7 +22,7 @@ class LocationServiceTest: XCTestCase {
         //assert
         XCTAssertTrue(locationManager.requestLocationCalled)
     }
-    
+
     func test_locationManagerDidFailWithError_calls_locationServiceDelegate_locationdidFail() {
         //arrange
         let sut = LocationService()

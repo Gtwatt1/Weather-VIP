@@ -20,7 +20,7 @@ class DarkModeInterfaceStyleTest: XCTestCase {
         XCTAssertEqual(background.backgroundColor, ColorName.cloudyBackground)
         XCTAssertEqual(background.weatherImage, ImageName.forestCloudyImage)
     }
-    
+
     func test_fetchRainyBackground_return_forestRainyImageAndBackground() {
         //arrange
         let sut = DarkModeInterfaceStyle()

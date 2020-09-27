@@ -39,10 +39,10 @@ struct Seeds {
         let data = Data(forecastJson.utf8)
         return try? JSONDecoder().decode(Forecast.self, from: data)
     }
-    
+
     static var forecastList: ForecastList? {
         let data = Data(forecastListJson.utf8)
         return try? JSONDecoder().decode(ForecastList.self, from: data)
     }
-    
+
 }

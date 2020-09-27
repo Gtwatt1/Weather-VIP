@@ -44,7 +44,7 @@ class WeatherInteractorTest: XCTestCase {
         //assert
         XCTAssertTrue(mockPresenter.presentErrorCalled)
     }
-    
+
     func test_fetchComingDaysWeather_calls_presenter_presentFiveDaysWeather_when_weatherService_succeed() {
         //arrange
         let mockPresenter = MockPresenter()

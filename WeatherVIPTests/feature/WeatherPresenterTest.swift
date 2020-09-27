@@ -20,7 +20,7 @@ class WeatherPresenterTest: XCTestCase {
         //assert
         XCTAssertNotNil(sut.view)
     }
-    
+
     func test_getWeatherType_returnCloudy_when_weatherDescription_containscloud() {
         //arrange
         let sut = WeatherPresenter()

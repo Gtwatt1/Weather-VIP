@@ -20,7 +20,7 @@ class LightModeInterfaceStyleTest: XCTestCase {
         XCTAssertEqual(background.backgroundColor, ColorName.cloudyBackground)
         XCTAssertEqual(background.weatherImage, ImageName.seaCloudyImage)
     }
-    
+
     func test_fetchRainyBackground_return_seaRainyImageAndBackground() {
         //arrange
         let sut = LightModeInterfaceStyle()
