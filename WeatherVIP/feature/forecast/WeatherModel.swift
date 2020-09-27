@@ -42,7 +42,8 @@ enum WeatherModelResponse {
         let feelsLike: Double
         let tempMin: Double
         let tempMax: Double
-        let pressure, humidity: Int
+        let pressure: Int
+        let humidity: Int
         enum CodingKeys: String, CodingKey {
             case temp
             case feelsLike = "feels_like"
