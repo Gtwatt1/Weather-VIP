@@ -10,10 +10,11 @@ import Foundation
 protocol LocalWeatherGateway: WeatherGateway {
     func saveCurrentDayForecast(forecast: Forecast)
     func saveComingDaysForecast(forecastList: ForecastList)
+    func saveFavoriteCity(_ city: FavoriteCity)
+    func getFavoriteCities() -> [FavoriteCity]?
 }
 
 class LocalWeatherGatewayImpl: LocalWeatherGateway {
-
     static let cacheCurrentDayWeather = Notification.Name("didFetchCurrentDayWeather")
     static let cacheComingDaysWeather = Notification.Name("didFetchComingDaysWeather")
 
@@ -38,6 +39,23 @@ class LocalWeatherGatewayImpl: LocalWeatherGateway {
         if let currentDayForecast: ForecastList = UserDefaultHelper().get(key: .comingDaysForecast) {
             NotificationCenter.default.post(name: LocalWeatherGatewayImpl.cacheComingDaysWeather,
                                             object: currentDayForecast)
+        }
+    }
+
+    func getFavoriteCities() -> [FavoriteCity]? {
+        let favoriteCityList: [FavoriteCity]? =  UserDefaultHelper().get(key: .favoriteCityList)
+        return favoriteCityList
+    }
+
+    func saveFavoriteCity(_ city: FavoriteCity) {
+        if var favoriteCityList = getFavoriteCities() {
+            if let index = favoriteCityList.firstIndex(of: city) {
+                favoriteCityList.remove(at: index)
+            }
+            favoriteCityList.append(city)
+            UserDefaultHelper().save(favoriteCityList, key: .favoriteCityList)
+        } else {
+            UserDefaultHelper().save([city], key: .favoriteCityList)
         }
     }
 

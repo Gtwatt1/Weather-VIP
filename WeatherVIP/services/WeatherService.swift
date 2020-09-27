@@ -52,4 +52,8 @@ class WeatherService: WeatherGateway {
     func fetchCachedWeatherData() {
         localWeatherGateway.fetchCachedWeatherData()
     }
+
+    func saveFavoriteCity(_ city: FavoriteCity) {
+        localWeatherGateway.saveFavoriteCity(city)
+    }
 }

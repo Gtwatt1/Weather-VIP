@@ -28,6 +28,7 @@ extension UserDefaults {
     enum Keys: String {
         case currentDayForecast = "CurrentDayForecast"
         case comingDaysForecast = "ComingDaysForecast"
+        case favoriteCityList = "favoriteCityList"
 
         func setValue(_ value: Any?) {
             guard let value = value else {
