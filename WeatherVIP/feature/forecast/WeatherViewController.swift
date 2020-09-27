@@ -89,6 +89,8 @@ extension WeatherViewController: WeatherDisplayLogic {
     }
 
     func displayError(_ error: String) {
-        showAlert(withMessage: error)
+        DispatchQueue.main.async {
+            self.showAlert(withMessage: error)
+        }
     }
 }
