@@ -19,7 +19,7 @@ class WeatherInteractorTest: XCTestCase {
         let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
                                              apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
         mockService.returnSuccess = true
-        let mockLocationService = MockLocationService()
+        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
                                     weatherService: mockService)
         let requestLocation = ForecastRequestLocation(latitude: "0", longitude: "0")
@@ -35,7 +35,7 @@ class WeatherInteractorTest: XCTestCase {
         let apiClient = APIClientImplementation()
         let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
                                              apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = MockLocationService()
+        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
                                     weatherService: mockService)
         let requestLocation = ForecastRequestLocation(latitude: "0", longitude: "0")
@@ -52,7 +52,7 @@ class WeatherInteractorTest: XCTestCase {
         let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
                                              apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
         mockService.returnSuccess = true
-        let mockLocationService = MockLocationService()
+        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter,
                                     locationService: mockLocationService, weatherService: mockService)
         let requestLocation = ForecastRequestLocation(latitude: "0", longitude: "0")
@@ -68,7 +68,7 @@ class WeatherInteractorTest: XCTestCase {
         let apiClient = APIClientImplementation()
         let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
                                              apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = MockLocationService()
+        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
                                     weatherService: mockService)
         let requestLocation = ForecastRequestLocation(latitude: "0", longitude: "0")
@@ -84,7 +84,7 @@ class WeatherInteractorTest: XCTestCase {
         let apiClient = APIClientImplementation()
         let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
                                              apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = MockLocationService()
+        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
                                     weatherService: mockService)
         //act
@@ -99,7 +99,7 @@ class WeatherInteractorTest: XCTestCase {
         let apiClient = APIClientImplementation()
         let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
                                              apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = MockLocationService()
+        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
                                     weatherService: mockService)
         //act
@@ -114,7 +114,7 @@ class WeatherInteractorTest: XCTestCase {
         let apiClient = APIClientImplementation()
         let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
                                              apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = MockLocationService()
+        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
                                     weatherService: mockService)
         //act
@@ -176,8 +176,4 @@ class MockWeatherService: WeatherService {
             }
         }
     }
-}
-
-class MockLocationService: LocationService {
-
 }
