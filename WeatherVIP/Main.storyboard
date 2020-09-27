@@ -222,7 +222,99 @@
                     <nil key="highlightedColor"/>
                 </label>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
+            <point key="canvasLocation" x="13" y="75"/>
+        </scene>
+        <!--Favorite City View Controller-->
+        <scene sceneID="dMi-zY-gRE">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteCityViewController" id="ufZ-Wi-eJs" customClass="FavoriteCityViewController" customModule="WeatherVIP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l8p-Up-ffi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PhK-BF-TDq">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCityCell" rowHeight="95" id="ELa-IT-quS" customClass="FavoriteCityCell" customModule="WeatherVIP" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="95"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ELa-IT-quS" id="XXp-BC-XiZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yxQ-mh-PgL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lagos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQl-8R-oPx">
+                                                            <rect key="frame" x="12" y="12" width="192" height="32"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rain" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-rS-gmS">
+                                                            <rect key="frame" x="214" y="8" width="46.5" height="40"/>
+                                                            <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="40" id="OY4-SA-8G3"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yN5-eZ-IQ6">
+                                                            <rect key="frame" x="270.5" y="16" width="131.5" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="hQl-8R-oPx" secondAttribute="bottom" constant="12" id="vR6-ra-xZQ"/>
+                                                        <constraint firstItem="hQl-8R-oPx" firstAttribute="top" secondItem="yxQ-mh-PgL" secondAttribute="top" constant="12" id="z7f-gq-9U6"/>
+                                                    </constraints>
+                                                    <edgeInsets key="layoutMargins" top="8" left="12" bottom="8" right="12"/>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQ3-Ia-A8f">
+                                                    <rect key="frame" x="8" y="56" width="42" height="35"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="QQ3-Ia-A8f" firstAttribute="leading" secondItem="yxQ-mh-PgL" secondAttribute="leading" constant="8" id="3Oj-z7-q3I"/>
+                                                <constraint firstItem="yxQ-mh-PgL" firstAttribute="top" secondItem="XXp-BC-XiZ" secondAttribute="top" id="9Qz-Dk-BWp"/>
+                                                <constraint firstItem="QQ3-Ia-A8f" firstAttribute="top" secondItem="yxQ-mh-PgL" secondAttribute="bottom" id="NUS-nO-txW"/>
+                                                <constraint firstItem="yxQ-mh-PgL" firstAttribute="leading" secondItem="XXp-BC-XiZ" secondAttribute="leading" id="Yvp-Jq-oMS"/>
+                                                <constraint firstAttribute="bottom" secondItem="QQ3-Ia-A8f" secondAttribute="bottom" constant="4" id="sBN-8F-SKL"/>
+                                                <constraint firstAttribute="trailing" secondItem="yxQ-mh-PgL" secondAttribute="trailing" id="xLE-99-R3P"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cityLabel" destination="hQl-8R-oPx" id="e0C-sN-RBO"/>
+                                            <outlet property="currentTempLabel" destination="yN5-eZ-IQ6" id="XUj-Hz-pIt"/>
+                                            <outlet property="dateLabel" destination="QQ3-Ia-A8f" id="4vk-PL-u0p"/>
+                                            <outlet property="weatherTypeIcon" destination="BRd-rS-gmS" id="BWG-gu-pbh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="PhK-BF-TDq" secondAttribute="bottom" id="0qJ-ad-eou"/>
+                            <constraint firstItem="PhK-BF-TDq" firstAttribute="top" secondItem="Kt8-1i-YSv" secondAttribute="top" id="N7w-5a-KGp"/>
+                            <constraint firstItem="PhK-BF-TDq" firstAttribute="leading" secondItem="Kt8-1i-YSv" secondAttribute="leading" id="QzG-Go-dkc"/>
+                            <constraint firstItem="Kt8-1i-YSv" firstAttribute="trailing" secondItem="PhK-BF-TDq" secondAttribute="trailing" id="g0K-1D-os2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Kt8-1i-YSv"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableview" destination="PhK-BF-TDq" id="G1Q-G4-hjV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YzT-VF-U2M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944.92753623188412" y="78.348214285714278"/>
         </scene>
     </scenes>
     <resources>

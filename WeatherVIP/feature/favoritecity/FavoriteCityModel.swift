@@ -13,4 +13,8 @@ struct FavoriteCity: Codable, Equatable {
     let temperature: Double
     let lastUpdateDate: Int
     let weatherDescription: String
+
+    static func == (lhs: FavoriteCity, rhs: FavoriteCity) -> Bool {
+        return lhs.cityName == rhs.cityName
+    }
 }

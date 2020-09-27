@@ -27,30 +27,6 @@ class WeatherPresenterTest: XCTestCase {
         XCTAssertNotNil(sut.view)
     }
 
-    func test_getWeatherType_returnCloudy_when_weatherDescription_containscloud() {
-        //arrange
-        let mainWeatherDescription = "Clouds"
-        //act
-        let weatherType = sut.getWeatherType(mainWeatherDescription)
-        //assert
-        XCTAssertEqual(weatherType, WeatherType.cloudy)
-    }
-    func test_getWeatherType_returnRain_when_weatherDescription_containsRain() {
-        //arrange
-        let mainWeatherDescription = "Rain"
-        //act
-        let weatherType = sut.getWeatherType(mainWeatherDescription)
-        //assert
-        XCTAssertEqual(weatherType, WeatherType.rainy)
-    }
-    func test_getWeatherType_returnSunny_when_weatherDescription_isSun() {
-        //arrange
-        let mainWeatherDescription = "Clear"
-        //act
-        let weatherType = sut.getWeatherType(mainWeatherDescription)
-        //assert
-        XCTAssertEqual(weatherType, WeatherType.sunny)
-    }
     func test_getWeatherBackground_returnCloudyBackground_when_weatherDescription_containscloud() {
         //arrange
         sut.userInterfaceStyle = interfaceStyle

@@ -28,7 +28,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var stackViewBackground: UIView!
     var tableManager = WeatherTableManager()
-    
+
     let addFavoriteString = "Add Favorite"
     let favoriteString = "Favorites"
 
@@ -46,7 +46,7 @@ class WeatherViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: addFavoriteString, style: .plain, target: self, action: #selector(addFavoriteTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-                   title: favoriteString, style: .plain, target: self, action: #selector(addFavoriteTapped))
+                   title: favoriteString, style: .plain, target: self, action: #selector(showFavoriteTapped))
         tableView.dataSource = tableManager
         tableView.delegate = tableManager
         interactor?.fetchWeatherForecast()
@@ -69,8 +69,18 @@ class WeatherViewController: UIViewController {
         self.interactor?.userInterfaceStyle = userInterfaceStyle
     }
 
+    @objc func showFavoriteTapped() {
+        gotoFavoriteScene()
+    }
+
     @objc func addFavoriteTapped() {
         interactor?.saveFavoriteCity()
+        gotoFavoriteScene()
+    }
+    
+    func gotoFavoriteScene() {
+        let favoriteCitiesScene = FavoriteCityBuilder().build()
+        navigationController?.pushViewController(favoriteCitiesScene, animated: true)
     }
 
     func updateCurrentDayWeatherLabels(_ viewModel: CurrentDayForecastVM) {
