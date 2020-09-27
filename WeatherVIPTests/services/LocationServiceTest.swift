@@ -12,11 +12,15 @@ import CoreLocation
 @testable import WeatherVIP
 
 class LocationServiceTest: XCTestCase {
-    func test_startLocationRequest_calls_LocationManagerRequestLocation() {
-        //arrange
-        let sut = LocationService()
-        let locationManager = MockLocationManager()
+    var sut: LocationService!
+    let locationManager = MockLocationManager()
+
+    override func setUp() {
+        sut = LocationService()
         sut.locationManager = locationManager
+    }
+
+    func test_startLocationRequest_calls_LocationManagerRequestLocation() {
         //act
         sut.startLocationRequest()
         //assert
@@ -25,11 +29,8 @@ class LocationServiceTest: XCTestCase {
 
     func test_locationManagerDidFailWithError_calls_locationServiceDelegate_locationdidFail() {
         //arrange
-        let sut = LocationService()
         let locationServiceDelegate =  MockLocationServiceDelegate()
         sut.delegate = locationServiceDelegate
-        let locationManager = MockLocationManager()
-        sut.locationManager = locationManager
         //act
         sut.locationManager(locationManager, didFailWithError: APIError.requestFailed)
         //assert

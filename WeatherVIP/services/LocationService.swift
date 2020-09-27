@@ -15,6 +15,10 @@ protocol  LocationServiceDelegate: class {
 }
 
 class LocationService: NSObject {
+    let locationUpdateFailedError = "An error occured while fetching your location, showing default city weather update"
+    //Location : Johanessburg
+    let defaultLatitude = "-26.2041028"
+    let defaultLongitude = "28.0473051"
     weak var delegate: LocationServiceDelegate?
     var locationManager = CLLocationManager()
 
@@ -40,6 +44,7 @@ extension LocationService: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        delegate?.locationdidFail(error.localizedDescription)
+        delegate?.locationdidFail(locationUpdateFailedError)
+        delegate?.didGetLocation(defaultLatitude, lng: defaultLongitude)
     }
 }

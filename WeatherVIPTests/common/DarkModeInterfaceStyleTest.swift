@@ -11,9 +11,13 @@ import XCTest
 @testable import WeatherVIP
 
 class DarkModeInterfaceStyleTest: XCTestCase {
+    var sut: DarkModeInterfaceStyle!
+
+    override func setUp() {
+         sut = DarkModeInterfaceStyle()
+    }
+
     func test_fetchCloudyBackground_return_forestCloudyImageAndBackground() {
-        //arrange
-        let sut = DarkModeInterfaceStyle()
         //act
         let background = sut.fetchCloudyBackground()
         //assert
@@ -22,8 +26,6 @@ class DarkModeInterfaceStyleTest: XCTestCase {
     }
 
     func test_fetchRainyBackground_return_forestRainyImageAndBackground() {
-        //arrange
-        let sut = DarkModeInterfaceStyle()
         //act
         let background = sut.fetchRainyBackground()
         //assert
@@ -32,8 +34,6 @@ class DarkModeInterfaceStyleTest: XCTestCase {
     }
 
     func test_fetchSunnyBackground_return_forestSunnyImageAndBackground() {
-        //arrange
-        let sut = DarkModeInterfaceStyle()
         //act
         let background = sut.fetchSunnyBackground()
         //assert

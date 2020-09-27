@@ -11,9 +11,12 @@ import XCTest
 @testable import WeatherVIP
 
 class LightModeInterfaceStyleTest: XCTestCase {
+    var sut: LightModeInterfaceStyle!
+
+    override func setUp() {
+         sut = LightModeInterfaceStyle()
+    }
     func test_fetchCloudyBackground_return_seaCloudyImageAndBackground() {
-        //arrange
-        let sut = LightModeInterfaceStyle()
         //act
         let background = sut.fetchCloudyBackground()
         //assert
@@ -22,8 +25,6 @@ class LightModeInterfaceStyleTest: XCTestCase {
     }
 
     func test_fetchRainyBackground_return_seaRainyImageAndBackground() {
-        //arrange
-        let sut = LightModeInterfaceStyle()
         //act
         let background = sut.fetchRainyBackground()
         //assert
@@ -32,8 +33,6 @@ class LightModeInterfaceStyleTest: XCTestCase {
     }
 
     func test_fetchSunnyBackground_return_seaSunnyImageAndBackground() {
-        //arrange
-        let sut = LightModeInterfaceStyle()
         //act
         let background = sut.fetchSunnyBackground()
         //assert

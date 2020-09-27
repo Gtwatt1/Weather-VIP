@@ -12,12 +12,17 @@ import XCTest
 
 class ApiClientTest: XCTestCase {
     let expectationMessage = "waiting for dataTask response"
+    let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
+    var mockUrlSession: MockURLSession!
+
+    override func setUp() {
+        mockUrlSession = MockURLSession()
+    }
+
     func test_apiClientExecute_returns_error_when_dataTaskReturnsError() {
         //arrange
-        let mockUrlSession = MockURLSession()
         mockUrlSession.returnError = true
         let sut = APIClientImplementation(urlSession: mockUrlSession)
-        let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
         let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
@@ -35,10 +40,8 @@ class ApiClientTest: XCTestCase {
 
     func test_apiClientExecute_returns_object_when_dataTaskReturnsCorrectData() {
         //arrange
-        let mockUrlSession = MockURLSession()
         mockUrlSession.return200 = true
         let sut = APIClientImplementation(urlSession: mockUrlSession)
-        let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
         let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
@@ -55,11 +58,9 @@ class ApiClientTest: XCTestCase {
 
     func test_apiClientExecute_returns_jsonConversionError_when_dataTaskReturnsInvalidData() {
         //arrange
-        let mockUrlSession = MockURLSession()
         mockUrlSession.return200 = true
         mockUrlSession.returnInCorrectData = true
         let sut = APIClientImplementation(urlSession: mockUrlSession)
-        let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
         let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
@@ -77,11 +78,9 @@ class ApiClientTest: XCTestCase {
 
     func test_apiClientExecute_returns_invalidError_when_dataTaskReturnsnilData() {
         //arrange
-        let mockUrlSession = MockURLSession()
         mockUrlSession.return200 = true
         mockUrlSession.returnNilData = true
         let sut = APIClientImplementation(urlSession: mockUrlSession)
-        let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
         let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in
@@ -99,9 +98,7 @@ class ApiClientTest: XCTestCase {
 
     func test_apiClientExecute_returns_unSuccessfulResponse_when_dataTaskReturnsUnsuccessfulResponse() {
         //arrange
-        let mockUrlSession = MockURLSession()
         let sut = APIClientImplementation(urlSession: mockUrlSession)
-        let mockRequest = CurrentDayApiRequest(location: ForecastRequestLocation(latitude: "0", longitude: "0"))
         let exp = expectation(description: expectationMessage)
         //act
         sut.execute(request: mockRequest) { (result: Result<MockSuccessObject, Error> ) in

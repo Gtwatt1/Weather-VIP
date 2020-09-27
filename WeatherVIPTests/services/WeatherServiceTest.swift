@@ -11,17 +11,22 @@ import XCTest
 @testable import WeatherVIP
 
 class WeatherServiceTest: XCTestCase {
+    var sut: WeatherService!
+    let localWeatherGateway = MockLocalWeatherGateWay()
+    let apiWeatherGateway = MockApiWeatherGateway()
+    let requestBody = ForecastRequestLocation(latitude: "0", longitude: "0")
+
+    override func setUp() {
+        sut = WeatherService(localWeatherGateway: localWeatherGateway, apiWeatherGateway: apiWeatherGateway)
+    }
+
     func test_getCurrentDayWeather_success_savesCurrentDayForecast() {
         //arrange
-        let localWeatherGateway = MockLocalWeatherGateWay()
-        let apiWeatherGateway = MockApiWeatherGateway()
-        let sut = WeatherService(localWeatherGateway: localWeatherGateway, apiWeatherGateway: apiWeatherGateway)
-        let requestBody = ForecastRequestLocation(latitude: "0", longitude: "0")
         let exp = expectation(description: "get current day weather expectation")
         //act
         sut.getCurrentDayWeather(requestBody: requestBody) { _ in
             //assert
-            XCTAssertTrue(localWeatherGateway.saveCurrentDayForecastCalled)
+            XCTAssertTrue(self.localWeatherGateway.saveCurrentDayForecastCalled)
             exp.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -29,15 +34,11 @@ class WeatherServiceTest: XCTestCase {
 
     func test_getCurrentDayWeather_success_savesComingDaysForecast() {
         //arrange
-        let localWeatherGateway = MockLocalWeatherGateWay()
-        let apiWeatherGateway = MockApiWeatherGateway()
-        let sut = WeatherService(localWeatherGateway: localWeatherGateway, apiWeatherGateway: apiWeatherGateway)
-        let requestBody = ForecastRequestLocation(latitude: "0", longitude: "0")
         let exp = expectation(description: "get current day weather expectation")
         //act
         sut.getFivedaysWeather(requestBody: requestBody) { _ in
             //assert
-            XCTAssertTrue(localWeatherGateway.saveComingDaysForecastCalled)
+            XCTAssertTrue(self.localWeatherGateway.saveComingDaysForecastCalled)
             exp.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)

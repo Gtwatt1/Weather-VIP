@@ -12,10 +12,15 @@ import XCTest
 
 class WeatherPresenterTest: XCTestCase {
     let jsonDecodingError = "Json decoding failed"
+    var sut: WeatherPresenter!
+    let interfaceStyle = LightModeInterfaceStyle()
+    let mockView = MockWeatherView()
+
+    override func setUp() {
+        sut = WeatherPresenter()
+    }
+
     func test_view_initialized_when_setViewCalled() {
-        //arrange
-        let sut = WeatherPresenter()
-        let mockView = MockWeatherView()
         //act
         sut.setView(view: mockView )
         //assert
@@ -24,7 +29,6 @@ class WeatherPresenterTest: XCTestCase {
 
     func test_getWeatherType_returnCloudy_when_weatherDescription_containscloud() {
         //arrange
-        let sut = WeatherPresenter()
         let mainWeatherDescription = "Clouds"
         //act
         let weatherType = sut.getWeatherType(mainWeatherDescription)
@@ -33,7 +37,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_getWeatherType_returnRain_when_weatherDescription_containsRain() {
         //arrange
-        let sut = WeatherPresenter()
         let mainWeatherDescription = "Rain"
         //act
         let weatherType = sut.getWeatherType(mainWeatherDescription)
@@ -42,7 +45,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_getWeatherType_returnSunny_when_weatherDescription_isSun() {
         //arrange
-        let sut = WeatherPresenter()
         let mainWeatherDescription = "Clear"
         //act
         let weatherType = sut.getWeatherType(mainWeatherDescription)
@@ -51,8 +53,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_getWeatherBackground_returnCloudyBackground_when_weatherDescription_containscloud() {
         //arrange
-        let sut = WeatherPresenter()
-        let interfaceStyle = LightModeInterfaceStyle()
         sut.userInterfaceStyle = interfaceStyle
         let mainWeatherDescription = "Clouds"
         //act
@@ -63,8 +63,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_getWeatherBackground_returnRainyBackground_when_weatherDescription_containsRain() {
         //arrange
-        let sut = WeatherPresenter()
-        let interfaceStyle = LightModeInterfaceStyle()
         sut.userInterfaceStyle = interfaceStyle
         let mainWeatherDescription = "Rain"
         //act
@@ -75,8 +73,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_getWeatherBackground_returnSunnyBackground_when_weatherDescription_isSun() {
         //arrange
-        let sut = WeatherPresenter()
-        let interfaceStyle = LightModeInterfaceStyle()
         sut.userInterfaceStyle = interfaceStyle
         let mainWeatherDescription = "Clear"
         //act
@@ -86,8 +82,6 @@ class WeatherPresenterTest: XCTestCase {
         XCTAssertEqual(weatherBackground.weatherImage, interfaceStyle.fetchSunnyBackground().weatherImage)
     }
     func test_getDayOfTheWeek_returns_correct_Day() {
-        //arrange
-        let sut = WeatherPresenter()
         //act
         let day = sut.getDayOfTheWeek(intDate: 1601203953)
         //assert
@@ -95,7 +89,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_currentDayViewModelMapping_return_correct_currentDayForecastVM() {
         //arrange
-        let sut = WeatherPresenter()
         if let forecast = Seeds.forecast {
             //act
             let viewModel = sut.currentDayViewModelMapping(forecast: forecast)
@@ -111,7 +104,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_comingDaysViewModelMapping_return_correct_comingDaysForecastVM() {
         //arrange
-        let sut = WeatherPresenter()
         if let forecastList = Seeds.forecastList {
             //act
             let viewModels = sut.comingDaysViewModelMapping(forecasts: forecastList.list)
@@ -126,7 +118,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_filterEarlyMorningForecast_returns_only_morningWeatherData() {
         //arrange
-        let sut = WeatherPresenter()
         if let forecastList = Seeds.forecastList {
             //act
             let viewModels = sut.filterEarlyMorningForecast(forecastList.list)
@@ -138,8 +129,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_presentCurrentDayWeather_called_view_displayCurrentDayWeather() {
         //arrange
-        let sut = WeatherPresenter()
-        let mockView = MockWeatherView()
         sut.setView(view: mockView)
         sut.userInterfaceStyle = LightModeInterfaceStyle()
         if let forecast = Seeds.forecast {
@@ -153,8 +142,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_presentCurrentDayWeather_called_view_displayViewBackground() {
         //arrange
-        let sut = WeatherPresenter()
-        let mockView = MockWeatherView()
         sut.setView(view: mockView)
         sut.userInterfaceStyle = LightModeInterfaceStyle()
         if let forecast = Seeds.forecast {
@@ -168,8 +155,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_presentFiveDaysWeather_called_view_displayComingDaysWeather() {
         //arrange
-        let sut = WeatherPresenter()
-        let mockView = MockWeatherView()
         sut.setView(view: mockView)
         sut.userInterfaceStyle = LightModeInterfaceStyle()
         if let forecastList = Seeds.forecastList {
@@ -183,8 +168,6 @@ class WeatherPresenterTest: XCTestCase {
     }
     func test_presentError_called_view_displayError() {
         //arrange
-        let sut = WeatherPresenter()
-        let mockView = MockWeatherView()
         sut.setView(view: mockView)
         //act
         sut.presentError(error: "An error")

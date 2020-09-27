@@ -58,6 +58,7 @@ class WeatherViewController: UIViewController {
         minTemperatureLabel.text = viewModel.minimalTemperature
         maxTemperatureLabel.text = viewModel.maximalTemperature
         weatherDescriptionLabel.text = viewModel.weatherDescription
+        [temperatureLabel, weatherDescriptionLabel].forEach({$0.fadeIn()})
     }
 
     func updateViewBackground(_ background: ViewBackground) {

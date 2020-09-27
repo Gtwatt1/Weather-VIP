@@ -15,7 +15,7 @@ protocol  WeatherForecastLogic {
 
 class WeatherInteractor: WeatherForecastLogic {
     let locationService: LocationService
-    let weatherService: WeatherService
+    let weatherService: WeatherGateway
     var presenter: WeatherPresentationLogic
     var userInterfaceStyle: UserInterfaceStyle! {
         didSet {
@@ -24,7 +24,7 @@ class WeatherInteractor: WeatherForecastLogic {
     }
 
     init(presenter: WeatherPresentationLogic, locationService: LocationService = LocationService(),
-         weatherService: WeatherService ) {
+         weatherService: WeatherGateway ) {
         self.locationService = locationService
         self.weatherService = weatherService
         self.presenter = presenter
@@ -41,7 +41,6 @@ class WeatherInteractor: WeatherForecastLogic {
         NotificationCenter.default.addObserver(self, selector: #selector(didRetrieveCurrentDaysWeatherForecast),
                                                       name: LocalWeatherGatewayImpl.cacheCurrentDayWeather, object: nil)
         weatherService.fetchCachedWeatherData()
-
     }
 
     @objc func didRetrieveCachedComingDaysWeatherForecast(_ notification: Notification) {

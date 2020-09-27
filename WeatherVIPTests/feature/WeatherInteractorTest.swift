@@ -12,16 +12,19 @@ import XCTest
 @testable import WeatherVIP
 
 class WeatherInteractorTest: XCTestCase {
+    let mockPresenter = MockPresenter()
+    var mockWeatherService: MockWeatherService!
+    let mockLocationService = LocationService()
+
+    override func setUp() {
+        mockWeatherService = MockWeatherService()
+    }
+
     func test_fetchCurrentDayWeather_calls_presenter_presentCurrentDayWeather_when_weatherService_succeed() {
         //arrange
-        let mockPresenter = MockPresenter()
-        let apiClient = APIClientImplementation()
-        let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
-                                             apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        mockService.returnSuccess = true
-        let mockLocationService = LocationService()
+        mockWeatherService.returnSuccess = true
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
-                                    weatherService: mockService)
+                                    weatherService: mockWeatherService)
         let requestLocation = ForecastRequestLocation(latitude: "0", longitude: "0")
         //act
         sut.fetchCurrentDayWeather(requestBody: requestLocation)
@@ -31,13 +34,8 @@ class WeatherInteractorTest: XCTestCase {
 
     func test_fetchCurrentDayWeather_calls_presenter_presentError_when_weatherService_fails() {
         //arrange
-        let mockPresenter = MockPresenter()
-        let apiClient = APIClientImplementation()
-        let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
-                                             apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
-                                    weatherService: mockService)
+                                    weatherService: mockWeatherService)
         let requestLocation = ForecastRequestLocation(latitude: "0", longitude: "0")
         //act
         sut.fetchCurrentDayWeather(requestBody: requestLocation)
@@ -47,14 +45,9 @@ class WeatherInteractorTest: XCTestCase {
 
     func test_fetchComingDaysWeather_calls_presenter_presentFiveDaysWeather_when_weatherService_succeed() {
         //arrange
-        let mockPresenter = MockPresenter()
-        let apiClient = APIClientImplementation()
-        let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
-                                             apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        mockService.returnSuccess = true
-        let mockLocationService = LocationService()
+        mockWeatherService.returnSuccess = true
         let sut = WeatherInteractor(presenter: mockPresenter,
-                                    locationService: mockLocationService, weatherService: mockService)
+                                    locationService: mockLocationService, weatherService: mockWeatherService)
         let requestLocation = ForecastRequestLocation(latitude: "0", longitude: "0")
         //act
         sut.fetchFivedaysWeather(requestBody: requestLocation)
@@ -64,13 +57,8 @@ class WeatherInteractorTest: XCTestCase {
 
     func test_fetchComingDaysWeather_calls_presenter_presentError_when_weatherService_fails() {
         //arrange
-        let mockPresenter = MockPresenter()
-        let apiClient = APIClientImplementation()
-        let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
-                                             apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
-                                    weatherService: mockService)
+                                    weatherService: mockWeatherService)
         let requestLocation = ForecastRequestLocation(latitude: "0", longitude: "0")
         //act
         sut.fetchFivedaysWeather(requestBody: requestLocation)
@@ -80,47 +68,42 @@ class WeatherInteractorTest: XCTestCase {
 
     func test_didGetLocation_calls_weatherService_fetchCurrentDayWeather() {
         //arrange
-        let mockPresenter = MockPresenter()
-        let apiClient = APIClientImplementation()
-        let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
-                                             apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
-                                    weatherService: mockService)
+                                    weatherService: mockWeatherService)
         //act
         sut.didGetLocation("0", lng: "0")
         //assert
-        XCTAssertTrue(mockService.fetchCurrentDayWeatherCalled)
+        XCTAssertTrue(mockWeatherService.fetchCurrentDayWeatherCalled)
     }
 
     func test_didGetLocation_calls_weatherService_fetchComingDaysWeather() {
         //arrange
-        let mockPresenter = MockPresenter()
-        let apiClient = APIClientImplementation()
-        let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
-                                             apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
-                                    weatherService: mockService)
+                                    weatherService: mockWeatherService)
         //act
         sut.didGetLocation("0", lng: "0")
         //assert
-        XCTAssertTrue(mockService.fetchFivedaysWeatherCalled)
+        XCTAssertTrue(mockWeatherService.fetchFivedaysWeatherCalled)
     }
 
     func test_locationdidFail_calls_presenter_presentError() {
         //arrange
-        let mockPresenter = MockPresenter()
-        let apiClient = APIClientImplementation()
-        let mockService = MockWeatherService(localWeatherGateway: LocalWeatherGatewayImpl(),
-                                             apiWeatherGateway: ApiWeatherGatewayImpl(apiClient: apiClient))
-        let mockLocationService = LocationService()
         let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
-                                    weatherService: mockService)
+                                    weatherService: mockWeatherService)
         //act
         sut.didGetLocation("0", lng: "0")
         //assert
         XCTAssertTrue(mockPresenter.presentErrorCalled)
+    }
+
+    func test_fetch_cachedWeatherData_calls_weatherService_fetchCachedWeatherData() {
+        //arrange
+        let sut = WeatherInteractor(presenter: mockPresenter, locationService: mockLocationService,
+                                    weatherService: mockWeatherService)
+        //act
+        sut.fetchCachedWeatherData()
+        //assert
+        XCTAssertTrue(mockWeatherService.fetchCachedWeatherDataCalled)
     }
 }
 
@@ -144,13 +127,14 @@ class MockPresenter: WeatherPresentationLogic {
     var userInterfaceStyle: UserInterfaceStyle!
 }
 
-class MockWeatherService: WeatherService {
+class MockWeatherService: WeatherGateway {
     var returnSuccess = false
     var fetchCurrentDayWeatherCalled = false
     var fetchFivedaysWeatherCalled = false
+    var fetchCachedWeatherDataCalled = false
 
-    override func getCurrentDayWeather(requestBody: ForecastRequestLocation?,
-                                       completion: ((Result<Forecast, Error>) -> Void)?) {
+    func getCurrentDayWeather(requestBody: ForecastRequestLocation?,
+                              completion: ((Result<Forecast, Error>) -> Void)?) {
         fetchCurrentDayWeatherCalled = true
         if let completion = completion {
             if returnSuccess {
@@ -163,8 +147,8 @@ class MockWeatherService: WeatherService {
         }
     }
 
-    override func getFivedaysWeather(requestBody: ForecastRequestLocation?,
-                                     completion: ((Result<ForecastList, Error>) -> Void)?) {
+    func getFivedaysWeather(requestBody: ForecastRequestLocation?,
+                            completion: ((Result<ForecastList, Error>) -> Void)?) {
         fetchFivedaysWeatherCalled = true
         if let completion = completion {
             if returnSuccess {
@@ -175,5 +159,8 @@ class MockWeatherService: WeatherService {
                 completion(.failure(APIError.requestFailed))
             }
         }
+    }
+    func fetchCachedWeatherData() {
+       fetchCachedWeatherDataCalled = true
     }
 }
