@@ -9,6 +9,6 @@
 import Foundation
 
 enum WeatherConstants {
-    static let RainyWeatherType = ["rain", "thunderstorm", "drizzle", "snow", "mist"]
+    static let rainyWeatherType = ["rain", "thunderstorm", "drizzle", "snow", "mist"]
     static let preferredWeatherType = "06:00:00"
 }

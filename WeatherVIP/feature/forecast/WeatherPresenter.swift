@@ -25,7 +25,7 @@ class WeatherPresenter {
 
     func getWeatherType(_ weatherName: String) -> WeatherType {
         switch weatherName.lowercased() {
-        case let value where WeatherConstants.RainyWeatherType.contains(value):
+        case let value where WeatherConstants.rainyWeatherType.contains(value):
             return WeatherType.rainy
         case let value where value.contains("cloud"):
             return WeatherType.cloudy

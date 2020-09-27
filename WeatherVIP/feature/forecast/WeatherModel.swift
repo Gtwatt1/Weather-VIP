@@ -48,7 +48,8 @@ enum WeatherModelResponse {
             case feelsLike = "feels_like"
             case tempMin = "temp_min"
             case tempMax = "temp_max"
-            case pressure, humidity
+            case pressure
+            case humidity
         }
     }
     struct Weather: Codable {
