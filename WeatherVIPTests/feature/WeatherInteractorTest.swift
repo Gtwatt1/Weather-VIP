@@ -107,7 +107,7 @@ class WeatherInteractorTest: XCTestCase {
         //assert
         XCTAssertTrue(mockService.fetchFivedaysWeatherCalled)
     }
-    
+
     func test_locationdidFail_calls_presenter_presentError() {
         //arrange
         let mockPresenter = MockPresenter()
