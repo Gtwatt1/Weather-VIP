@@ -12,7 +12,6 @@ import XCTest
 @testable import WeatherVIP
 
 class WeatherPresenterTest: XCTestCase {
-    
     func test_view_initialized_when_setViewCalled() {
         //arrange
         let sut = WeatherPresenter()
@@ -97,8 +96,7 @@ class WeatherPresenterTest: XCTestCase {
     func test_currentDayViewModelMapping_return_correct_currentDayForecastVM() {
         //arrange
         let sut = WeatherPresenter()
-        let data = Data(Seeds.forecastJson.utf8)
-        if let forecast = try? JSONDecoder().decode(Forecast.self, from: data) {
+        if let forecast = Seeds.forecast {
             //act
             let viewModel = sut.currentDayViewModelMapping(forecast: forecast)
             //assert
@@ -114,8 +112,7 @@ class WeatherPresenterTest: XCTestCase {
     func test_comingDaysViewModelMapping_return_correct_comingDaysForecastVM() {
         //arrange
         let sut = WeatherPresenter()
-        let data = Data(Seeds.forecastListJson.utf8)
-        if let forecastList = try? JSONDecoder().decode(ForecastList.self, from: data) {
+        if let forecastList = Seeds.forecastList {
             //act
             let viewModels = sut.comingDaysViewModelMapping(forecasts: forecastList.list)
             let firstVm = viewModels.first
@@ -130,8 +127,7 @@ class WeatherPresenterTest: XCTestCase {
     func test_filterEarlyMorningForecast_returns_only_morningWeatherData() {
         //arrange
         let sut = WeatherPresenter()
-        let data = Data(Seeds.forecastListJson.utf8)
-        if let forecastList = try? JSONDecoder().decode(ForecastList.self, from: data) {
+        if let forecastList = Seeds.forecastList {
             //act
             let viewModels = sut.filterEarlyMorningForecast(forecastList.list)
             //assert
@@ -146,8 +142,7 @@ class WeatherPresenterTest: XCTestCase {
         let mockView = MockWeatherView()
         sut.setView(view: mockView)
         sut.userInterfaceStyle = LightModeInterfaceStyle()
-        let data = Data(Seeds.forecastJson.utf8)
-        if let forecast = try? JSONDecoder().decode(Forecast.self, from: data) {
+        if let forecast = Seeds.forecast {
             //act
             sut.presentCurrentDayWeather(forecast: forecast)
             //assert
@@ -162,8 +157,7 @@ class WeatherPresenterTest: XCTestCase {
         let mockView = MockWeatherView()
         sut.setView(view: mockView)
         sut.userInterfaceStyle = LightModeInterfaceStyle()
-        let data = Data(Seeds.forecastJson.utf8)
-        if let forecast = try? JSONDecoder().decode(Forecast.self, from: data) {
+        if let forecast = Seeds.forecast {
             //act
             sut.presentCurrentDayWeather(forecast: forecast)
             //assert
@@ -178,8 +172,7 @@ class WeatherPresenterTest: XCTestCase {
         let mockView = MockWeatherView()
         sut.setView(view: mockView)
         sut.userInterfaceStyle = LightModeInterfaceStyle()
-        let data = Data(Seeds.forecastListJson.utf8)
-        if let forecastList = try? JSONDecoder().decode(ForecastList.self, from: data) {
+        if let forecastList = Seeds.forecastList {
             //act
             sut.presentFiveDaysWeather(forecastList: forecastList)
             //assert

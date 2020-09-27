@@ -7,9 +7,10 @@
 //
 
 import Foundation
+@testable import WeatherVIP
 
 struct Seeds {
-    static let forecastJson = """
+     static let forecastJson = """
         {\"coord\":{\"lon\":-122.08,\"lat\":37.39},\"weather\":[{\"id\":800,\"main\":\"Clear\",
         \"description\":\"clear sky\",\"icon\":\"01d\"}],
             \"base\":\"stations\",\"main\":{\"temp\":282.55,\"feels_like\":281.86,\"temp_min\":280.37,
@@ -19,7 +20,7 @@ struct Seeds {
         \"country\":\"US\",\"sunrise\":1560343627,
         \"sunset\":1560396563},\"timezone\":-25200,\"id\":420006353,\"name\":\"Mountain View\",\"cod\":200}
         """
-    static let forecastListJson = """
+     static let forecastListJson = """
         {\"list\":[{\"dt\":1596564000,\"main\":{\"temp\":293.55,\"feels_like\":293.13,\"temp_min\":293.55,
         \"temp_max\":294.05,\"pressure\":1013,\"sea_level\":1013,\"grnd_level\":976,\"humidity\":84,\"temp_kf\":-0.5},
         \"weather\":[{\"id\":500,\"main\":\"Rain\",\"description\":\"light rain\",\"icon\":\"10d\"}],
@@ -34,4 +35,14 @@ struct Seeds {
         \"visibility\":10000,\"pop\":0.49,\"rain\":{\"3h\":0.53},
         \"sys\":{\"pod\":\"d\"},\"dt_txt\":\"2020-08-04 06:00:00\"}]}
         """
+    static var forecast: Forecast? {
+        let data = Data(forecastJson.utf8)
+        return try? JSONDecoder().decode(Forecast.self, from: data)
+    }
+    
+    static var forecastList: ForecastList? {
+        let data = Data(forecastListJson.utf8)
+        return try? JSONDecoder().decode(ForecastList.self, from: data)
+    }
+    
 }
