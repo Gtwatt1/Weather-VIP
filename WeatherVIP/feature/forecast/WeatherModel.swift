@@ -11,7 +11,7 @@ import Foundation
 typealias Forecast = WeatherModelResponse.Forecast
 typealias ForecastList = WeatherModelResponse.ForecastList
 
-typealias ForecastRequest = WeatherModelRequest.Body
+typealias ForecastRequestLocation = WeatherModelRequest.Body
 
 enum WeatherModelRequest {
     struct Body {

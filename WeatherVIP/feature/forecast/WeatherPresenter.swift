@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreLocation
 
 protocol WeatherPresentationLogic {
     func presentCurrentDayWeather(forecast: Forecast)

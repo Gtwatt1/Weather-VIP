@@ -1,35 +1,55 @@
 //
 //  WeatherService.swift
-//  Weather
+//  WeatherVIP
 //
-//  Created by Godwin Olorunshola on 11/12/2019.
-//  Copyright © 2019 Godwin Olorunshola. All rights reserved.
+//  Created by Olorunshola Godwin on 27/09/2020.
+//  Copyright © 2020 Olorunshola Godwin. All rights reserved.
 //
 
 import Foundation
-import CoreLocation
 
-protocol WeatherServiceProtocol {
-    func getCurrentDayWeather(requestBody: ForecastRequest,
-                              completion: @escaping (Result<Forecast, APIError>) -> Void )
-    func getFivedaysWeather(requestBody: ForecastRequest,
-                            completion: @escaping (Result<ForecastList, APIError>) -> Void)
-}
+class WeatherService: WeatherGateway {
 
-class WeatherService: WeatherServiceProtocol {
-    func getCurrentDayWeather(requestBody: ForecastRequest,
-                              completion: @escaping (Result<Forecast, APIError>) -> Void) {
-        let url = String(format: URLConstants.getCurrentForcast, requestBody.latitude, requestBody.longitude)
-        Networker.shared.makeGetRequest(url: url) {(result: Result<Forecast, APIError>) in
+    let localWeatherGateway: LocalWeatherGateway
+    let apiWeatherGateway: ApiWeatherGateway
+
+    init(localWeatherGateway: LocalWeatherGateway, apiWeatherGateway: ApiWeatherGateway) {
+        self.apiWeatherGateway =  apiWeatherGateway
+        self.localWeatherGateway = localWeatherGateway
+    }
+
+    func getCurrentDayWeather(requestBody: ForecastRequestLocation?, completion: ((Result<Forecast, Error>) -> Void)?) {
+        guard let requestBody = requestBody, let completion = completion else {
+            return
+        }
+        apiWeatherGateway.getCurrentDayWeather(requestBody: requestBody) { [weak self](result) in
+            switch result {
+            case .success(let forecast):
+                self?.localWeatherGateway.saveCurrentDayForecast(forecast: forecast)
+            default:
+                break
+            }
             completion(result)
         }
     }
 
-    func getFivedaysWeather(requestBody: ForecastRequest,
-                            completion: @escaping (Result< ForecastList, APIError>) -> Void) {
-        let url = String(format: URLConstants.getFiveDaysForecast, requestBody.latitude, requestBody.longitude)
-        Networker.shared.makeGetRequest(url: url) {(result: Result<ForecastList, APIError>) in
+    func getFivedaysWeather(requestBody: ForecastRequestLocation?,
+                            completion: ((Result<ForecastList, Error>) -> Void)?) {
+        guard let requestBody = requestBody, let completion = completion else {
+            return
+        }
+        apiWeatherGateway.getFivedaysWeather(requestBody: requestBody) { [weak self](result) in
+            switch result {
+            case .success(let forecastList):
+                self?.localWeatherGateway.saveComingDaysForecast(forecastList: forecastList)
+            default:
+                break
+            }
             completion(result)
         }
+    }
+    
+    func fetchCachedWeatherData() {
+        localWeatherGateway.fetchCachedWeatherData()
     }
 }

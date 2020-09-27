@@ -11,8 +11,12 @@ import UIKit
 
 class WeatherBuilder: SceneBuilder {
     func build() -> UIViewController {
+        let localWeatherGateway = LocalWeatherGatewayImpl()
+        let apiWeatherGateway = ApiWeatherGatewayImpl()
+        let weatherService = WeatherService(localWeatherGateway: localWeatherGateway,
+                                            apiWeatherGateway: apiWeatherGateway)
         let presenter = WeatherPresenter()
-        let interactor = WeatherInteractor(presenter: presenter)
+        let interactor = WeatherInteractor(presenter: presenter, weatherService: weatherService)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let controller = storyboard.instantiateViewController(withIdentifier:
             "WeatherViewController") as? WeatherViewController {

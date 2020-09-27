@@ -15,7 +15,7 @@ protocol  WeatherForecastLogic {
 
 class WeatherInteractor: WeatherForecastLogic {
     let locationService: LocationService
-    let weatherService: WeatherServiceProtocol
+    let weatherService: WeatherService
     var presenter: WeatherPresentationLogic
     var userInterfaceStyle: UserInterfaceStyle! {
         didSet {
@@ -24,14 +24,36 @@ class WeatherInteractor: WeatherForecastLogic {
     }
 
     init(presenter: WeatherPresentationLogic, locationService: LocationService = LocationService(),
-         weatherService: WeatherServiceProtocol = WeatherService()) {
+         weatherService: WeatherService ) {
         self.locationService = locationService
         self.weatherService = weatherService
         self.presenter = presenter
     }
 
     func fetchWeatherForecast() {
+        fetchCachedWeatherData()
         requestCurrentLocation()
+    }
+
+    func fetchCachedWeatherData() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRetrieveCachedComingDaysWeatherForecast),
+                                               name: LocalWeatherGatewayImpl.cacheComingDaysWeather, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didRetrieveCurrentDaysWeatherForecast),
+                                                      name: LocalWeatherGatewayImpl.cacheCurrentDayWeather, object: nil)
+        weatherService.fetchCachedWeatherData()
+
+    }
+
+    @objc func didRetrieveCachedComingDaysWeatherForecast(_ notification: Notification) {
+        if let forecastList = notification.object as? ForecastList {
+            presenter.presentFiveDaysWeather(forecastList: forecastList)
+        }
+    }
+
+    @objc func didRetrieveCurrentDaysWeatherForecast(_ notification: Notification) {
+        if let forecast = notification.object as? Forecast {
+            presenter.presentCurrentDayWeather(forecast: forecast)
+        }
     }
 
     func requestCurrentLocation() {
@@ -39,7 +61,7 @@ class WeatherInteractor: WeatherForecastLogic {
         locationService.startLocationRequest()
     }
 
-    func fetchCurrentDayWeather(requestBody: ForecastRequest) {
+    func fetchCurrentDayWeather(requestBody: ForecastRequestLocation) {
         weatherService.getCurrentDayWeather(requestBody: requestBody) {[weak self] result in
             switch result {
             case .success(let forecast):
@@ -50,7 +72,7 @@ class WeatherInteractor: WeatherForecastLogic {
         }
     }
 
-    func fetchFivedaysWeather(requestBody: ForecastRequest) {
+    func fetchFivedaysWeather(requestBody: ForecastRequestLocation) {
         weatherService.getFivedaysWeather(requestBody: requestBody) { [weak self] result  in
             switch result {
             case .success(let forecastList):
@@ -64,7 +86,7 @@ class WeatherInteractor: WeatherForecastLogic {
 
 extension WeatherInteractor: LocationServiceDelegate {
     func didGetLocation(_ lat: String, lng: String) {
-        let requestBody = ForecastRequest(latitude: lat, longitude: lng)
+        let requestBody = ForecastRequestLocation(latitude: lat, longitude: lng)
         fetchCurrentDayWeather(requestBody: requestBody)
         fetchFivedaysWeather(requestBody: requestBody)
     }

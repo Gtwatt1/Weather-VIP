@@ -12,14 +12,14 @@ class Networker {
     static var shared = Networker()
 
     func makeGetRequest<T: Decodable>(session: URLSession = URLSession.shared, url: String,
-                                      completion: @escaping (Result<T, APIError>) -> Void) {
+                                      completion: @escaping (Result<T, Error>) -> Void) {
         guard let url  = URL(string: url) else {
-            completion(.failure(.badURL))
+            completion(.failure(APIError.badURL))
             return
         }
         let task = session.dataTask(with: url) { (data, response, _) in
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.requestFailed))
+                completion(.failure(APIError.requestFailed))
                 return
             }
             if httpResponse.statusCode == 200 {
@@ -28,13 +28,13 @@ class Networker {
                         let genericModel = try JSONDecoder().decode(T.self, from: data)
                         completion(.success(genericModel))
                     } catch {
-                        completion(.failure(.jsonConversionFailure))
+                        completion(.failure(APIError.jsonConversionFailure))
                     }
                 } else {
-                    completion(.failure(.invalidData))
+                    completion(.failure(APIError.invalidData))
                 }
             } else {
-                completion(.failure(.responseUnsuccessful))
+                completion(.failure(APIError.responseUnsuccessful))
             }
         }
         task.resume()
