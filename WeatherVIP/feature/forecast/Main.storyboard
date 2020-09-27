@@ -142,16 +142,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9KX-cb-VYx">
                                 <rect key="frame" x="0.0" y="44" width="414" height="403"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5E-MK-Qfl">
-                                <rect key="frame" x="283" y="37" width="111" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Change Theme">
-                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="changeTheme:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ktD-A9-RIY"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMa-BU-CBD">
                                 <rect key="frame" x="20" y="52" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -180,16 +170,13 @@
                             <constraint firstItem="maJ-1l-cA5" firstAttribute="centerX" secondItem="9KX-cb-VYx" secondAttribute="centerX" id="0VT-jz-U9V"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9KX-cb-VYx" secondAttribute="trailing" id="0rU-Uz-d8X"/>
                             <constraint firstItem="g9t-BZ-KII" firstAttribute="top" secondItem="wQ5-4T-AZp" secondAttribute="bottom" id="4a7-XM-oDq"/>
-                            <constraint firstItem="f5E-MK-Qfl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="EDW-OP-I9V"/>
                             <constraint firstItem="maJ-1l-cA5" firstAttribute="top" secondItem="dGg-uq-6QJ" secondAttribute="bottom" constant="2" id="Ehk-rf-psY"/>
                             <constraint firstItem="9KX-cb-VYx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ejz-NV-QtC"/>
-                            <constraint firstItem="f5E-MK-Qfl" firstAttribute="centerY" secondItem="XMa-BU-CBD" secondAttribute="centerY" id="I8R-Nw-BIf"/>
                             <constraint firstItem="cqw-Vc-bx8" firstAttribute="leading" secondItem="wQ5-4T-AZp" secondAttribute="leading" id="OI1-Cn-j5W"/>
                             <constraint firstItem="wQ5-4T-AZp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RNs-OT-wiu"/>
                             <constraint firstItem="9KX-cb-VYx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.45" id="Thu-U8-zVd"/>
                             <constraint firstItem="g9t-BZ-KII" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yl6-x5-oCV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wQ5-4T-AZp" secondAttribute="trailing" id="ZW7-k5-7O9"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="f5E-MK-Qfl" secondAttribute="trailing" constant="20" id="a9Z-PG-deR"/>
                             <constraint firstItem="9KX-cb-VYx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="buj-sr-mv7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g9t-BZ-KII" secondAttribute="trailing" id="fhE-hb-3Yg"/>
                             <constraint firstItem="maJ-1l-cA5" firstAttribute="centerY" secondItem="9KX-cb-VYx" secondAttribute="centerY" id="g4V-eQ-Sdm"/>

@@ -36,9 +36,20 @@ class WeatherViewController: UIViewController {
     }
 
     var interactor: WeatherForecastLogic?
+    var userInterfaceStyle: UserInterfaceStyle?
 
     func setup(interactor: WeatherForecastLogic) {
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                userInterfaceStyle = DarkModeInterfaceStyle()
+            } else {
+                userInterfaceStyle = LightModeInterfaceStyle()
+            }
+        } else {
+           userInterfaceStyle = LightModeInterfaceStyle()
+        }
         self.interactor = interactor
+        self.interactor?.userInterfaceStyle = userInterfaceStyle
     }
 
     func updateCurrentDayWeatherLabels(_ viewModel: CurrentDayForecastVM) {

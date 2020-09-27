@@ -9,72 +9,19 @@
 import Foundation
 import CoreLocation
 
-protocol WeatherCellView {
-    func displayDay(day: String)
-    func displayWeatherType(image: String)
-    func displayTemperature(temp: String)
-}
-
 protocol WeatherPresentationLogic {
     func presentCurrentDayWeather(forecast: Forecast)
     func presentFiveDaysWeather(forecastList: ForecastList)
     func presentError(error: String)
+    var userInterfaceStyle: UserInterfaceStyle! {get set}
 }
 
 class WeatherPresenter {
-    var backgroundColor = "", weatherImage = "", error = ""
     weak private var view: WeatherDisplayLogic?
-    var fiveDaysForecast: [Forecast]?
+    var userInterfaceStyle: UserInterfaceStyle!
 
     func setView(view: WeatherDisplayLogic) {
         self.view = view
-    }
-
-    var weatherType = WeatherType.cloudy {
-        didSet {
-            setBackgroundView()
-        }
-    }
-
-    func changeTheme() {
-        if let theme = theme {
-            if  theme == .forest {
-                self.theme = .sea
-            } else {
-                self.theme = .forest
-            }
-        }
-    }
-    func configureCell(cell: WeatherCellView, row: Int) {
-        let dayForecast = fiveDaysForecast?[row]
-        let weatherImage = getWeatherType(dayForecast?.weather[0].main.lowercased() ?? "")
-        let cellDay = getDayOfTheWeek(intDate: dayForecast?.unixDate ?? 0)
-        cell.displayWeatherType(image: weatherImage.rawValue)
-        cell.displayDay(day: cellDay)
-        cell.displayTemperature(temp: "\(Int(dayForecast?.main.temp.rounded() ?? 0.0) )º")
-    }
-
-    func setBackgroundView() {
-        switch weatherType {
-        case .cloudy:
-            weatherImage = theme == Theme.forest ? "forest_cloudy" : "sea_cloudy"
-            backgroundColor = "54717A"
-        case .rainy:
-            weatherImage = theme == Theme.forest ? "forest_rainy" : "sea_rainy"
-            backgroundColor = "57575D"
-        case .sunny:
-            weatherImage = theme == Theme.forest ? "forest_sunny" : "sea_sunny"
-            backgroundColor = "47AB2F"
-        }
-    }
-
-    var theme: Theme? {
-        didSet {
-            if let _ = theme {
-                setBackgroundView()
-            }
-            //            view?.didChangeTheme()
-        }
     }
 
     private func getWeatherType(_ weatherMain: String) -> WeatherType {
@@ -92,14 +39,11 @@ class WeatherPresenter {
         let weatherType = getWeatherType(weatherMain)
         switch weatherType {
         case .cloudy:
-            let backgroundImage = theme == Theme.forest ? "forest_cloudy" : "sea_cloudy"
-            return ViewBackground(weatherImage: backgroundImage, backgroundColor: ColorName.cloudyBackground)
+            return userInterfaceStyle.fetchCloudyBackground()
         case .rainy:
-            let backgroundImage = theme == Theme.forest ? "forest_rainy" : "sea_rainy"
-            return ViewBackground(weatherImage: backgroundImage, backgroundColor: ColorName.rainyBackground)
+            return userInterfaceStyle.fetchRainyBackground()
         case .sunny:
-            let backgroundImage = theme == Theme.forest ? "forest_sunny" : "sea_sunny"
-            return ViewBackground(weatherImage: backgroundImage, backgroundColor: ColorName.sunnyBackground)
+            return userInterfaceStyle.fetchSunnyBackground()
         }
     }
 
@@ -145,6 +89,7 @@ class WeatherPresenter {
 }
 
 extension WeatherPresenter: WeatherPresentationLogic {
+
     func presentCurrentDayWeather(forecast: Forecast) {
         let viewModel = currentDayViewModelMapping(forecast: forecast)
         let weatherBackground = getWeatherBackground(forecast.weather[0].main)

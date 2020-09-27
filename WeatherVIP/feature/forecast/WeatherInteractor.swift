@@ -10,12 +10,18 @@ import Foundation
 
 protocol  WeatherForecastLogic {
     func fetchWeatherForecast()
+    var userInterfaceStyle: UserInterfaceStyle! {get set}
 }
 
 class WeatherInteractor: WeatherForecastLogic {
     let locationService: LocationService
     let weatherService: WeatherServiceProtocol
-    let presenter: WeatherPresentationLogic
+    var presenter: WeatherPresentationLogic
+    var userInterfaceStyle: UserInterfaceStyle! {
+        didSet {
+            presenter.userInterfaceStyle = userInterfaceStyle
+        }
+    }
 
     init(presenter: WeatherPresentationLogic, locationService: LocationService = LocationService(),
          weatherService: WeatherServiceProtocol = WeatherService()) {
