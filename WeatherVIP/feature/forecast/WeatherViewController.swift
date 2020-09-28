@@ -77,7 +77,7 @@ class WeatherViewController: UIViewController {
         interactor?.saveFavoriteCity()
         gotoFavoriteScene()
     }
-    
+
     func gotoFavoriteScene() {
         let favoriteCitiesScene = FavoriteCityBuilder().build()
         navigationController?.pushViewController(favoriteCitiesScene, animated: true)

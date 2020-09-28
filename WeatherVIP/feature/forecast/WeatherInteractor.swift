@@ -42,7 +42,8 @@ class WeatherInteractor: WeatherForecastLogic {
             let favoriteCity = FavoriteCity(cityName: currentDisplayedForecast.name ?? "",
                                             temperature: currentDisplayedForecast.main.temp,
                                             lastUpdateDate: currentDisplayedForecast.unixDate,
-                                            weatherDescription: currentDisplayedForecast.weather[0].main)
+                                            weatherDescription: currentDisplayedForecast.weather[0].main,
+                                            location: currentDisplayedForecast.location)
             weatherService.saveFavoriteCity(favoriteCity)
         }
     }

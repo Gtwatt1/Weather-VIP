@@ -56,6 +56,7 @@
 		5A53AB142521538500705C24 /* FavoriteCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AB132521538500705C24 /* FavoriteCityCell.swift */; };
 		5A53AB162521575E00705C24 /* WeatherHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AB152521575E00705C24 /* WeatherHelper.swift */; };
 		5A53AB18252159C400705C24 /* WeatherHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AB17252159C400705C24 /* WeatherHelperTest.swift */; };
+		5A53AB1B2521635100705C24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53AB1A2521635100705C24 /* MapViewController.swift */; };
 		5AA03AFF251B54E9009BF523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03AFE251B54E9009BF523 /* AppDelegate.swift */; };
 		5AA03B01251B54E9009BF523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA03B00251B54E9009BF523 /* SceneDelegate.swift */; };
 		5AA03B08251B54F0009BF523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AA03B07251B54F0009BF523 /* Assets.xcassets */; };
@@ -122,6 +123,7 @@
 		5A53AB132521538500705C24 /* FavoriteCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCityCell.swift; sourceTree = "<group>"; };
 		5A53AB152521575E00705C24 /* WeatherHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHelper.swift; sourceTree = "<group>"; };
 		5A53AB17252159C400705C24 /* WeatherHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHelperTest.swift; sourceTree = "<group>"; };
+		5A53AB1A2521635100705C24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5AA03AFB251B54E9009BF523 /* WeatherVIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherVIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA03AFE251B54E9009BF523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AA03B00251B54E9009BF523 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		5A53AA7F251D9EEB00705C24 /* feature */ = {
 			isa = PBXGroup;
 			children = (
+				5A53AB192521633E00705C24 /* map */,
 				5A53AB0425212EB100705C24 /* favoritecity */,
 				5A53AA81251D9F3600705C24 /* forecast */,
 			);
@@ -307,6 +310,14 @@
 				5A53AB132521538500705C24 /* FavoriteCityCell.swift */,
 			);
 			path = favoritecity;
+			sourceTree = "<group>";
+		};
+		5A53AB192521633E00705C24 /* map */ = {
+			isa = PBXGroup;
+			children = (
+				5A53AB1A2521635100705C24 /* MapViewController.swift */,
+			);
+			path = map;
 			sourceTree = "<group>";
 		};
 		5AA03AF2251B54E8009BF523 = {
@@ -503,6 +514,7 @@
 				5AA03AFF251B54E9009BF523 /* AppDelegate.swift in Sources */,
 				5A53AA8A251DA4C400705C24 /* LocationService.swift in Sources */,
 				5A53AAC7251EF56800705C24 /* SceneBuilder.swift in Sources */,
+				5A53AB1B2521635100705C24 /* MapViewController.swift in Sources */,
 				5A53AA94251DABB100705C24 /* ApiClient.swift in Sources */,
 				5A53AA97251DAC8400705C24 /* ApiKey.swift in Sources */,
 				5A53AAC5251EF53600705C24 /* WeatherBuilder.swift in Sources */,

@@ -17,6 +17,7 @@ class FavoriteCityViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     var interactor: FavoriteCityLogic?
     var tableManager = FavoriteCityTableManager()
+    let showMapString = "Show Map"
 
     func setup(interactor: FavoriteCityLogic) {
         self.interactor = interactor
@@ -28,12 +29,21 @@ class FavoriteCityViewController: UIViewController {
         title = "Favorites"
         tableview.dataSource = tableManager
         tableview.delegate = tableManager
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+                                                    title: showMapString, style: .plain,
+                                                    target: self, action: #selector(showMapTapped))
+    }
+
+    @objc func showMapTapped() {
+        let mapViewController = MapViewController()
+        mapViewController.favoriteCities = tableManager.favoriteCities
+        navigationController?.pushViewController(mapViewController, animated: true)
     }
 }
 
 extension FavoriteCityViewController: FavoriteCityDisplayLogic {
     func displayFavoriteCities(cities: [FavoriteCity]) {
-        tableManager.cellviewModels = cities
+        tableManager.favoriteCities = cities
         tableview.reloadData()
     }
 

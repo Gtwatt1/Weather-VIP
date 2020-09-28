@@ -11,18 +11,18 @@ import Foundation
 import UIKit
 
 class FavoriteCityTableManager: NSObject {
-    var cellviewModels: [FavoriteCity] = []
+    var favoriteCities: [FavoriteCity] = []
 }
 
 extension FavoriteCityTableManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellviewModels.count
+        return favoriteCities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCityCell",
                                                     for: indexPath) as? FavoriteCityCell {
-            cell.configure(viewModel: cellviewModels[indexPath.row])
+            cell.configure(viewModel: favoriteCities[indexPath.row])
             return cell
         }
         return UITableViewCell()
