@@ -18,24 +18,14 @@ protocol WeatherPresentationLogic {
 class WeatherPresenter {
     weak var view: WeatherDisplayLogic?
     var userInterfaceStyle: UserInterfaceStyle!
+    let weatherHelper = WeatherHelper()
 
     func setView(view: WeatherDisplayLogic) {
         self.view = view
     }
 
-    func getWeatherType(_ weatherName: String) -> WeatherType {
-        switch weatherName.lowercased() {
-        case let value where WeatherConstants.rainyWeatherType.contains(value):
-            return WeatherType.rainy
-        case let value where value.contains("cloud"):
-            return WeatherType.cloudy
-        default:
-            return WeatherType.sunny
-        }
-    }
-
     func getWeatherBackground(_ weatherName: String) -> ViewBackground {
-        let weatherType = getWeatherType(weatherName)
+        let weatherType = weatherHelper.getWeatherType(weatherName)
         switch weatherType {
         case .cloudy:
             return userInterfaceStyle.fetchCloudyBackground()
@@ -66,7 +56,7 @@ class WeatherPresenter {
         filteredForecaset.forEach {
             let viewModel = ComingDaysForecastVM(day: getDayOfTheWeek(intDate: $0.unixDate),
                                                  temperature: decorateWithTemperatureDegree($0.main.temp),
-                                                 weatherIcon: getWeatherType($0.weather[0].main).rawValue)
+                                                 weatherIcon: weatherHelper.getWeatherType($0.weather[0].main).rawValue)
             comingDaysViewModel.append(viewModel)
         }
         return comingDaysViewModel

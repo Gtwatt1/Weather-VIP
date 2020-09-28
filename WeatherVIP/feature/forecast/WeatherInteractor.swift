@@ -9,6 +9,7 @@
 import Foundation
 
 protocol  WeatherForecastLogic {
+    func saveFavoriteCity()
     func fetchWeatherForecast()
     var userInterfaceStyle: UserInterfaceStyle! {get set}
 }
@@ -22,6 +23,7 @@ class WeatherInteractor: WeatherForecastLogic {
             presenter.userInterfaceStyle = userInterfaceStyle
         }
     }
+    var currentDisplayedForecast: Forecast?
 
     init(presenter: WeatherPresentationLogic, locationService: LocationService = LocationService(),
          weatherService: WeatherGateway ) {
@@ -33,6 +35,17 @@ class WeatherInteractor: WeatherForecastLogic {
     func fetchWeatherForecast() {
         fetchCachedWeatherData()
         requestCurrentLocation()
+    }
+
+    func saveFavoriteCity() {
+        if let currentDisplayedForecast = currentDisplayedForecast {
+            let favoriteCity = FavoriteCity(cityName: currentDisplayedForecast.name ?? "",
+                                            temperature: currentDisplayedForecast.main.temp,
+                                            lastUpdateDate: currentDisplayedForecast.unixDate,
+                                            weatherDescription: currentDisplayedForecast.weather[0].main,
+                                            location: currentDisplayedForecast.location)
+            weatherService.saveFavoriteCity(favoriteCity)
+        }
     }
 
     func fetchCachedWeatherData() {
@@ -51,6 +64,7 @@ class WeatherInteractor: WeatherForecastLogic {
 
     @objc func didRetrieveCurrentDaysWeatherForecast(_ notification: Notification) {
         if let forecast = notification.object as? Forecast {
+            currentDisplayedForecast = forecast
             presenter.presentCurrentDayWeather(forecast: forecast)
         }
     }
@@ -64,6 +78,7 @@ class WeatherInteractor: WeatherForecastLogic {
         weatherService.getCurrentDayWeather(requestBody: requestBody) {[weak self] result in
             switch result {
             case .success(let forecast):
+                self?.currentDisplayedForecast = forecast
                 self?.presenter.presentCurrentDayWeather(forecast: forecast)
             case .failure(let error):
                 self?.presenter.presentError(error: error.localizedDescription)

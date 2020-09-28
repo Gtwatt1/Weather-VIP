@@ -12,6 +12,8 @@ typealias Forecast = WeatherModelResponse.Forecast
 typealias ForecastList = WeatherModelResponse.ForecastList
 
 typealias ForecastRequestLocation = WeatherModelRequest.Body
+typealias LocationCoordinate = WeatherModelResponse.Coordinate
+
 
 enum WeatherModelRequest {
     struct Body {
@@ -28,6 +30,7 @@ enum WeatherModelResponse {
         let forecastID: Int?
         let name: String?
         let dateString: String?
+        let location: Coordinate?
         enum CodingKeys: String, CodingKey {
             case weather
             case main
@@ -35,6 +38,15 @@ enum WeatherModelResponse {
             case forecastID = "id"
             case unixDate = "dt"
             case dateString = "dt_txt"
+            case location = "coord"
+        }
+    }
+    struct Coordinate: Codable {
+        var latitude: Double
+        var longitude: Double
+        enum CodingKeys: String, CodingKey {
+            case latitude = "lat"
+            case longitude = "lon"
         }
     }
     struct Main: Codable {

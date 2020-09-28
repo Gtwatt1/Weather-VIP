@@ -26,9 +26,27 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var stackViewBackground: UIView!
     var tableManager = WeatherTableManager()
+
+    let addFavoriteString = "Add Favorite"
+    let favoriteString = "Favorites"
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemBackground]
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+            navigationController?.navigationBar.tintColor = .systemBackground
+        } else {
+            let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+            navigationController?.navigationBar.tintColor = .white
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: addFavoriteString, style: .plain, target: self, action: #selector(addFavoriteTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+                   title: favoriteString, style: .plain, target: self, action: #selector(showFavoriteTapped))
         tableView.dataSource = tableManager
         tableView.delegate = tableManager
         interactor?.fetchWeatherForecast()
@@ -51,6 +69,20 @@ class WeatherViewController: UIViewController {
         self.interactor?.userInterfaceStyle = userInterfaceStyle
     }
 
+    @objc func showFavoriteTapped() {
+        gotoFavoriteScene()
+    }
+
+    @objc func addFavoriteTapped() {
+        interactor?.saveFavoriteCity()
+        gotoFavoriteScene()
+    }
+
+    func gotoFavoriteScene() {
+        let favoriteCitiesScene = FavoriteCityBuilder().build()
+        navigationController?.pushViewController(favoriteCitiesScene, animated: true)
+    }
+
     func updateCurrentDayWeatherLabels(_ viewModel: CurrentDayForecastVM) {
         temperatureLabel.text = viewModel.temperature
         currentTemperatureLabel.text = viewModel.temperature
@@ -64,7 +96,9 @@ class WeatherViewController: UIViewController {
     func updateViewBackground(_ background: ViewBackground) {
         weatherImage.image = UIImage(named: background.weatherImage)
         tableView.backgroundColor = UIColor(named: background.backgroundColor)
-        moreCurrentDayTemperatureDetailsLabel.addBackground(color: UIColor(named: background.backgroundColor))
+        stackViewBackground.backgroundColor = UIColor(named: background.backgroundColor)
+        navigationController?.navigationBar.barTintColor = UIColor(named: background.backgroundColor)
+
     }
 }
 

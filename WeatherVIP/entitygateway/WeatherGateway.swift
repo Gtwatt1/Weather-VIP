@@ -14,10 +14,21 @@ protocol WeatherGateway {
     func getFivedaysWeather(requestBody: ForecastRequestLocation?,
                             completion: ((Result<ForecastList, Error>) -> Void)?)
     func fetchCachedWeatherData()
+    func saveFavoriteCity(_ city: FavoriteCity)
+    func getFavoriteCities() -> [FavoriteCity]?
 }
 
 extension WeatherGateway {
     func fetchCachedWeatherData() {
         // Making protocol function optional
+    }
+
+    func saveFavoriteCity(_ city: FavoriteCity) {
+        // Making protocol function optional
+    }
+
+    func getFavoriteCities() -> [FavoriteCity]? {
+        // Making protocol function optional
+        return nil
     }
 }
